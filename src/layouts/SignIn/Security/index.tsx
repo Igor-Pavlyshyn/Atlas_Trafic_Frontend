@@ -27,10 +27,10 @@ const SignUpSecond = (props: Props) => {
   const [loginUser, { data, isSuccess, isError, error }]: any =
     useAuthMutation();
 
-  const { handleSubmit, control } = useForm<IFormInput>();
+  const { register, handleSubmit } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = (data) => {
     loginUser({
-      url: "register/",
+      url: "login/",
       method: "POST",
       body: {
         email,
@@ -41,14 +41,22 @@ const SignUpSecond = (props: Props) => {
   };
 
   useEffect(() => {
+    if (!email) {
+      return navigate("/signIn");
+    }
     if (isError) {
       return alert(error?.data?.detail);
     }
-    if (isSuccess && !data?.access) {
+    if (isSuccess && data?.access) {
+      localStorage.setItem("access", data?.access);
+      localStorage.setItem("refresh", data?.refresh);
       dispatch(loginActions.anullateState());
-      navigate("/signIn");
+      return navigate("/");
     }
-  }, [isSuccess, isError]);
+    if (isSuccess && !data?.access) {
+      navigate("/signIn/verify-login");
+    }
+  }, [isSuccess, isError, email]);
 
   return (
     <div className={styles.container}>
@@ -64,17 +72,10 @@ const SignUpSecond = (props: Props) => {
               <label>What was your favorite dish as a child?</label>
               <img src={Arrow} alt="Arrow" />
             </div>
-            <Controller
-              name="answer_1"
-              control={control}
-              rules={{
-                required: "Required",
-                pattern: {
-                  value: /^.{3,}$/,
-                  message: "Invalid email format",
-                },
-              }}
-              render={({ field }) => <input {...field} />}
+            <input
+              placeholder="Answer 1"
+              {...register("answer_1")}
+              type="text"
             />
           </div>
           <div className={styles.container_form_content_item}>
@@ -83,17 +84,10 @@ const SignUpSecond = (props: Props) => {
               <label>What was the name of your first pet?</label>
               <img src={Arrow} alt="Arrow" />
             </div>
-            <Controller
-              name="answer_2"
-              control={control}
-              rules={{
-                required: "Required",
-                pattern: {
-                  value: /^.{3,}$/,
-                  message: "Invalid email format",
-                },
-              }}
-              render={({ field }) => <input {...field} />}
+            <input
+              placeholder="Answer 2"
+              {...register("answer_2")}
+              type="text"
             />
           </div>
           <div className={styles.container_form_content_item}>
@@ -102,17 +96,10 @@ const SignUpSecond = (props: Props) => {
               <label>What was your favorite subject in school?</label>
               <img src={Arrow} alt="Arrow" />
             </div>
-            <Controller
-              name="answer_3"
-              control={control}
-              rules={{
-                required: "Required",
-                pattern: {
-                  value: /^.{3,}$/,
-                  message: "Invalid email format",
-                },
-              }}
-              render={({ field }) => <input {...field} />}
+            <input
+              placeholder="Answer 3"
+              {...register("answer_3")}
+              type="text"
             />
           </div>
           <button type="submit">Next</button>

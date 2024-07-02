@@ -1,8 +1,9 @@
-import React from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginActions } from "../../../redux/slices/loginSlice";
 
 interface IFormInput {
   name: string;
@@ -16,14 +17,20 @@ type Props = {};
 const SignUp = (props: Props) => {
   const navigate = useNavigate();
 
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInput>();
-  const onSumbit: SubmitHandler<IFormInput> = (data) =>
+  const dispatch = useDispatch();
+
+  const { control, register, handleSubmit } = useForm<IFormInput>();
+  const onSumbit: SubmitHandler<IFormInput> = ({
+    confirmPassword,
+    password,
+    email,
+  }) => {
+    if (password !== confirmPassword) {
+      return alert("Password and Confirm Password should be same");
+    }
+    dispatch(loginActions.addFirstStepInfo({ email, password }));
     navigate("/signUp/security");
+  };
 
   return (
     <div className={styles.container}>
@@ -55,8 +62,7 @@ const SignUp = (props: Props) => {
             />
           </div>
           <div className={styles.container_form_content_item}>
-            <label>Email or phone</label>
-            {/* <input {...register("email")} /> */}
+            <label>Email</label>
             <Controller
               name="email"
               control={control}
@@ -64,7 +70,7 @@ const SignUp = (props: Props) => {
                 required: "Required",
                 pattern: {
                   value: /^\S+@\S+$/i,
-                  message: "Invalid email format",
+                  message: "Invalid email format or phone",
                 },
               }}
               render={({ field }) => <input {...field} />}
@@ -83,7 +89,7 @@ const SignUp = (props: Props) => {
           </div>
           <button type="submit">Next</button>
           <span>
-            Alredy have an account yet? <Link to="/signIn">Sign in</Link>
+            Alredy have an account? <Link to="/signIn">Sign in</Link>
           </span>
         </form>
       </section>

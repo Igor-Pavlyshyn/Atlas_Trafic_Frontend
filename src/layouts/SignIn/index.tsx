@@ -2,8 +2,10 @@ import React from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import styles from "./style.module.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginActions } from "../../redux/slices/loginSlice";
 
-interface IFormInput {
+export interface IFormInput {
   email: string;
   password: string;
 }
@@ -12,6 +14,7 @@ type Props = {};
 
 const SignIn = (props: Props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -19,7 +22,10 @@ const SignIn = (props: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>();
-  const onSumbit: SubmitHandler<IFormInput> = (data) => navigate("/");
+  const onSumbit: SubmitHandler<IFormInput> = (data) => {
+    dispatch(loginActions.addFirstStepInfo(data));
+    navigate("/signIn/security");
+  };
 
   return (
     <div className={styles.container}>
@@ -30,8 +36,11 @@ const SignIn = (props: Props) => {
           className={styles.container_form_content}
         >
           <div className={styles.container_form_content_item}>
-            <label>Email or phone</label>
-            {/* <input {...register("email")} /> */}
+            <label>Email</label>
+            {/* <input
+              {...register("email")}
+              onChange={(event: any) => setEmail(event?.target.value)}
+            /> */}
             <Controller
               name="email"
               control={control}
@@ -50,8 +59,21 @@ const SignIn = (props: Props) => {
           </div>
           <div className={styles.container_form_content_item}>
             <label>Password</label>
-            <input {...register("password")} type="password" />
-            <p>Forgot password?</p>
+            <Controller
+              name="password"
+              control={control}
+              rules={{
+                required: "Required",
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*\d).{6,}$/,
+                  message: "Password is required",
+                },
+              }}
+              render={({ field }) => <input type="password" {...field} />}
+            />
+            <p onClick={() => navigate("/signIn/forgot-password")}>
+              Forgot password?
+            </p>
           </div>
           <button type="submit">Sign in</button>
           <span>

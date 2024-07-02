@@ -7,34 +7,54 @@
   justify-content: start;
   align-items: center;
   margin: auto;
-  position: relative;
   &_title {
     font-family: Inter;
     font-weight: 500;
-    margin-right: 9.5rem;
+    margin-top: 5rem;
+    margin-right: 40rem;
   }
   &_form {
     background: colors.$blue_gradient;
-    max-width: 556px;
-    // max-height: 641px;
-    width: 556px;
-    // height: 641px;
+    padding: 150px;
     border-radius: 14px;
     display: flex;
+    flex-direction: column;
+    // & button {
+    //   background: colors.$pink_gradient;
+    //   height: 44px;
+    //   border-radius: 8px;
+    //   color: white;
+    //   font-family: Inter;
+    //   font-size: 20px;
+    //   font-weight: 500;
+    //   border: none;
+    //   cursor: pointer;
+    // }
     &_content {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 34px;
       margin: auto;
-      padding-top: 78px;
-      padding-bottom: 78px;
+      &_items {
+        display: flex;
+        justify-content: space-between;
+        & img {
+          cursor: pointer;
+        }
+      }
+      // padding: 72px 97px;
       &_item {
-        border: none;
+        font-size: 20px;
+        font-family: Inter;
+        font-weight: 600;
         display: flex;
         flex-direction: column;
         align-items: start;
-        gap: 8px;
-        position: relative;
+        gap: 4px;
+        & span {
+          color: colors.$primary_pink;
+          cursor: pointer;
+        }
         & label {
           font-size: 14px;
           font-family: Inter;
@@ -43,8 +63,8 @@
         & input {
           color: #d8dcde;
           max-width: 362px;
-          width: 362px;
-          height: 44px;
+          width: 72px !important;
+          height: 44px !important;
           background: #0f0521;
           border-radius: 8px;
           border: 0.5px solid #3a2a4c;
@@ -52,12 +72,6 @@
           padding-left: 8px;
           font-size: 14px;
           outline: none;
-          &::placeholder {
-            font-size: 14px;
-            color: #d8dcde;
-            font-family: Inter;
-            font-weight: 400;
-          }
         }
         & p {
           display: flex;
@@ -66,29 +80,26 @@
           font-size: 14px;
           font-family: Inter;
           font-weight: 400;
+          color: colors.$primary_pink;
           cursor: pointer;
         }
-        &_text {
-          max-width: 362px;
-          width: 362px;
-          display: flex;
-          justify-content: space-between;
-          & img {
-            cursor: pointer;
-          }
+      }
+
+      &_resend {
+        color: white;
+        font-size: 16px;
+        font-family: Inter;
+        font-weight: 400;
+        & span {
+          color: colors.$primary_pink;
+          cursor: pointer;
         }
       }
-      & button {
-        background: colors.$pink_gradient;
-        height: 44px;
-        border-radius: 8px;
-        color: white;
+
+      & footer {
+        font-size: 16px;
+        font-weight: 400;
         font-family: Inter;
-        font-size: 20px;
-        font-weight: 500;
-        border: none;
-        margin-top: 32px;
-        cursor: pointer;
       }
       & span {
         font-size: 16px;
@@ -100,10 +111,6 @@
         cursor: pointer;
         text-decoration: none;
       }
-      & h1 {
-        font-family: Poppins;
-        font-weight: 600;
-      }
     }
   }
   &_back_arrow {
@@ -111,9 +118,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    position: absolute;
-    top: 100%;
-    right: 100%;
+    position: relative;
+    right: 40%;
+    top: 50px;
     font-size: 20px;
     font-weight: 300;
     font-family: Inter;

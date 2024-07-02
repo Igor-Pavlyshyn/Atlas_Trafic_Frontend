@@ -10,14 +10,15 @@
   &_title {
     font-family: Inter;
     font-weight: 500;
-    margin-right: 19rem;
+    margin-right: 40rem;
   }
   &_form {
     background: colors.$blue_gradient;
-    max-width: 556px;
-    max-height: 418px;
-    width: 556px;
-    height: 418px;
+    // max-width: 556px;
+    // max-height: 418px;
+    // width: 556px;
+    // height: 418px;
+    padding: 150px;
     border-radius: 14px;
     display: flex;
     flex-direction: column;
@@ -40,6 +41,9 @@
       &_items {
         display: flex;
         justify-content: space-between;
+        & img {
+          cursor: pointer;
+        }
       }
       // padding: 72px 97px;
       &_item {
@@ -84,6 +88,17 @@
         }
       }
 
+      &_resend {
+        color: white;
+        font-size: 16px;
+        font-family: Inter;
+        font-weight: 400;
+        & span {
+          color: colors.$primary_pink;
+          cursor: pointer;
+        }
+      }
+
       & footer {
         font-size: 16px;
         font-weight: 400;
@@ -99,6 +114,24 @@
         cursor: pointer;
         text-decoration: none;
       }
+    }
+  }
+  &_back_arrow {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    right: 60%;
+    top: 60px;
+    font-size: 20px;
+    font-weight: 300;
+    font-family: Inter;
+    cursor: pointer;
+    text-decoration: none;
+    & img {
+      position: relative;
+      top: 2px;
     }
   }
 }

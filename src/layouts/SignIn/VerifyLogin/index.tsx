@@ -10,6 +10,7 @@ import { useAuthMutation } from "../../../redux/api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducersType } from "../../../redux/store";
 import { loginActions } from "../../../redux/slices/loginSlice";
+import { GradientButton } from "../../../components/GradientButton";
 
 interface IFormInput {
   firstAnswer: string;
@@ -21,26 +22,26 @@ type Props = {};
 
 const SignUpThird = (props: Props) => {
   const [otp, setOtp] = useState<string | undefined>();
-  const [isAvailableRequest, setIsAvailableRequest] = useState<boolean>(true);
+  const [availableResend, setAvailableResend] = useState<boolean>(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [verifyOtp, { data: tokens, isError, isLoading, isSuccess }] =
     useAuthMutation();
-  const [resendOtp, { data: resendData, isSuccess: successResend }] =
-    useAuthMutation();
+
+  const [resendOtp] = useAuthMutation();
 
   const email = useSelector(
     (state: ReducersType) => state.reducers.loginReducer.email
   );
 
   useEffect(() => {
-    if (successResend) {
-      alert("Resent");
+    if (!email) {
+      return navigate("/signIn");
     }
     if (isSuccess) {
-      dispatch(loginActions.anullateState());
+      dispatch(loginActions.addFirstStepInfo({ otp }));
       if (tokens.access) {
         localStorage.setItem("access", tokens?.access);
       }
@@ -49,7 +50,7 @@ const SignUpThird = (props: Props) => {
       }
       return navigate("/");
     }
-  }, [isSuccess]);
+  }, [isSuccess, email]);
 
   const verifyHandler = () => {
     verifyOtp({
@@ -63,16 +64,16 @@ const SignUpThird = (props: Props) => {
   };
 
   const resendHandler = () => {
-    if (!isAvailableRequest) return;
+    if (!availableResend) return;
     resendOtp({
-      url: "user/send-otp/",
+      url: "send-otp/",
       method: "POST",
       body: {
         email,
       },
     });
-    setIsAvailableRequest(false);
-    setTimeout(() => setIsAvailableRequest(true), 120000);
+    setAvailableResend(false);
+    setTimeout(() => setAvailableResend(true), 120000);
   };
 
   return (
@@ -82,7 +83,7 @@ const SignUpThird = (props: Props) => {
         <div className={styles.container_form_content}>
           <div className={styles.container_form_content_items}>
             <div className={styles.container_form_content_item}>
-              We just sent a 6 digit code to <br /> <span>name@gmail.com</span>
+              We just sent a 6 digit code to <br /> <span>{email}</span>
             </div>
             <img src={Pencil} alt="Pencil" width={24} height={24} />
           </div>
@@ -100,12 +101,12 @@ const SignUpThird = (props: Props) => {
             Don’t see a code?{" "}
             <span onClick={resendHandler}>Resend to email</span>
           </div>
-          <button type="submit" onClick={verifyHandler}>
+          <GradientButton type="submit" onClick={verifyHandler}>
             Verify email
-          </button>
+          </GradientButton>
         </div>
       </section>
-      <Link to="/signUp/security" className={styles.container_back_arrow}>
+      <Link to="/signIn" className={styles.container_back_arrow}>
         <img src={BackArrow} alt="BackArrow" />
         <div>Back</div>
       </Link>
