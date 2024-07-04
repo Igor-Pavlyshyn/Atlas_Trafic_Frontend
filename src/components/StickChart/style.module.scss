@@ -1,0 +1,46 @@
+.container {
+  position: relative;
+  & h3 {
+    //   position: absolute;
+
+    //   bottom: -40px;
+    //   left: 70px;
+    position: relative;
+    right: 48px;
+    bottom: 55px;
+
+    text-align: center;
+    font-weight: 300;
+    font-family: Inter;
+    line-height: 27px;
+  }
+  & p {
+    position: absolute;
+    left: 85px;
+    bottom: 190px;
+
+    font-size: 30px;
+    font-weight: 600;
+    font-family: Inter;
+  }
+}
+
+.top_line,
+.bottom_line {
+  position: absolute;
+  //   left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.top_line {
+  top: 39px;
+  right: 36px;
+}
+
+.bottom_line {
+  //   bottom: 38px;
+  //   bottom: 96px;
+  bottom: 130px;
+  right: 36px;
+}
