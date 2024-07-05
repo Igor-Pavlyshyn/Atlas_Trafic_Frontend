@@ -1,4 +1,6 @@
 .container {
   display: flex;
+  position: relative;
+  right: 32px;
   gap: 15px;
 }

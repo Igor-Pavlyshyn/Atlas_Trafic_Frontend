@@ -15,7 +15,7 @@ type Props = {};
 
 const Conversation = (props: Props) => {
   return (
-    <ComponentModal>
+    <ComponentModal width={382}>
       <div className={styles.container}>
         <div className={styles.container_top}>
           <div className={styles.container_top_schedule}>

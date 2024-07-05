@@ -1,0 +1,29 @@
+import React from "react";
+import { BlackBorderedSpace } from "../../BlackBorderedSpace";
+
+import WarningSvg from "../../../assets/icons/tools/Warning.svg";
+import ArrowUpSvg from "../../../assets/icons/tools/ArrowUp.svg";
+import CrashesImage from "../../../assets/crash.png";
+
+import styles from "./style.module.scss";
+
+type Props = {};
+
+const CarCrashes = (props: Props) => {
+  return (
+    <BlackBorderedSpace width={260} height={104}>
+      <div className={styles.container}>
+        <div className={styles.container_header}>
+          <img src={WarningSvg} alt="Warning" />
+          <div>Car Crashe - ID: 67890</div>
+          <img src={ArrowUpSvg} alt="arrow" />
+        </div>
+        <div className={styles.container_body}>
+          <img src={CrashesImage} alt="crashes" />
+        </div>
+      </div>
+    </BlackBorderedSpace>
+  );
+};
+
+export default CarCrashes;

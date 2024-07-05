@@ -1,0 +1,39 @@
+.container {
+  //   &_rows {
+  display: flex;
+  gap: 8px;
+  //   }
+
+  &_top {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &_rows {
+      display: flex;
+      gap: 8px;
+
+      &_firstRow {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        &_buttons {
+          display: flex;
+          gap: 8px;
+        }
+      }
+
+      &_secondRow {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      &_fourthRow {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  }
+}

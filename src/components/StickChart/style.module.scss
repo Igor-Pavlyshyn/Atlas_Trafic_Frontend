@@ -1,25 +1,50 @@
 .container {
   position: relative;
+  bottom: 20px;
   & h3 {
-    //   position: absolute;
+    position: absolute;
 
     //   bottom: -40px;
     //   left: 70px;
-    position: relative;
-    right: 48px;
-    bottom: 55px;
+    // position: relative;
+    // right: 48px;
+    // bottom: 55px;
 
+    bottom: -30px;
+    left: 35px;
+
+    font-size: 12px;
     text-align: center;
     font-weight: 300;
     font-family: Inter;
-    line-height: 27px;
+    line-height: 20px;
+  }
+  & h3.enviromental {
+    position: absolute;
+
+    //   bottom: -40px;
+    //   left: 70px;
+    // position: relative;
+    // right: 48px;
+    // bottom: 55px;
+
+    bottom: -30px;
+    left: 20px;
+
+    font-size: 12px;
+    text-align: center;
+    font-weight: 300;
+    font-family: Inter;
+    line-height: 20px;
   }
   & p {
     position: absolute;
-    left: 85px;
-    bottom: 190px;
+    // left: 85px;
+    // bottom: 190px;
+    top: 34px;
+    right: 31px;
 
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 600;
     font-family: Inter;
   }
@@ -29,18 +54,18 @@
 .bottom_line {
   position: absolute;
   //   left: 50%;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
   z-index: 1;
 }
 
 .top_line {
-  top: 39px;
-  right: 36px;
+  top: 25px;
+  right: 8px;
 }
 
 .bottom_line {
   //   bottom: 38px;
   //   bottom: 96px;
-  bottom: 130px;
-  right: 36px;
+  bottom: 26px;
+  right: 8px;
 }

@@ -22,6 +22,8 @@ const StickChart = ({ title, word1, word2 }: Props) => {
     }),
   ];
 
+  console.log(word1);
+
   return (
     <div className={styles.container}>
       <div>
@@ -31,18 +33,19 @@ const StickChart = ({ title, word1, word2 }: Props) => {
           series={[
             {
               data: needItems,
-              innerRadius: 60,
-              outerRadius: 75,
-              paddingAngle: 5,
-              cornerRadius: 5,
+              innerRadius: 28,
+              outerRadius: 35,
+              paddingAngle: 2,
+              cornerRadius: 2,
               startAngle: -90,
-              //   endAngle: 180,
+              // endAngle: 180,
               // cx: 250,
               // cy: 150,
+              cx: 55,
             },
           ]}
-          width={300}
-          height={300}
+          width={106}
+          height={132}
         />
 
         <img className={styles.bottom_line} src={BottomLine} alt="BottomLine" />
@@ -50,7 +53,7 @@ const StickChart = ({ title, word1, word2 }: Props) => {
 
       <p>{title}</p>
 
-      <h3>
+      <h3 className={word1 == "Environmental" ? styles.enviromental : ""}>
         {word1} <br /> {word2}
       </h3>
     </div>

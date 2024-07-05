@@ -1,0 +1,8 @@
+.container {
+  &_leftSide {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+  }
+}

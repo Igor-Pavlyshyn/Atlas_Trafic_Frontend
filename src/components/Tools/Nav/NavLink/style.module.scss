@@ -1,0 +1,14 @@
+.container {
+  text-decoration: none;
+  width: 100%;
+
+  display: flex;
+
+  &_text {
+    display: flex;
+  }
+
+  &_arrow {
+    rotate: (270deg);
+  }
+}

@@ -8,7 +8,7 @@ type Props = {};
 
 const Scores = (props: Props) => {
   return (
-    <ComponentModal title="Scores" seeMore>
+    <ComponentModal title="Scores" width={296} height={190} seeMore>
       <div className={styles.container}>
         <StickChart title="B+" word1="Safety" word2="Score" />
         <StickChart title="A-" word1="Efficiency" word2="Score" />
