@@ -1,8 +1,17 @@
 .container {
+  display: flex;
+  gap: 4px;
+
   &_leftSide {
     display: flex;
     flex-direction: column;
-    align-self: center;
-    justify-content: center;
+    align-items: center;
+    gap: 13px;
+  }
+
+  &_rightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 }

@@ -20,6 +20,7 @@ import Health from "../../components/Health";
 import styles from "./style.module.scss";
 import Map from "../../components/Map";
 import Tools from "../../components/Tools";
+import TrafficViolation from "../../components/TrafficViolation";
 
 type Props = {};
 
@@ -73,6 +74,10 @@ const Home = (props: Props) => {
           <div>
             <Map />
           </div>
+          <div>
+            <Tools />
+          </div>
+          {/* <TrafficViolation /> */}
         </div>
 
         <div className={styles.container_top_rows_fourthRow}>
@@ -80,9 +85,6 @@ const Home = (props: Props) => {
           <Conversation />
           <Health />
         </div>
-        {/* <div>
-          <Tools />
-        </div> */}
       </div>
     </section>
   );

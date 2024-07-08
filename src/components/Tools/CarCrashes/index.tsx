@@ -11,7 +11,7 @@ type Props = {};
 
 const CarCrashes = (props: Props) => {
   return (
-    <BlackBorderedSpace width={260} height={104}>
+    <BlackBorderedSpace width={242} height={86}>
       <div className={styles.container}>
         <div className={styles.container_header}>
           <img src={WarningSvg} alt="Warning" />

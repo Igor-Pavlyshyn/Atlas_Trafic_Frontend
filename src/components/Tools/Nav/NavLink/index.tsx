@@ -14,13 +14,19 @@ type Props = {
 
 const NavLinkComponent = ({ link, svg, text }: Props) => {
   return (
-    <BlackBorderedSpace>
+    <BlackBorderedSpace width={199} height={14}>
       <NavLink to={link} className={styles.container}>
         <div className={styles.container_text}>
           <img src={svg} alt="" />
           <div>{text}</div>
         </div>
-        <img src={Arrow} alt="" className={styles.container_arrow} />
+        <img
+          src={Arrow}
+          alt=""
+          className={styles.container_arrow}
+          width={16}
+          height={16}
+        />
       </NavLink>
     </BlackBorderedSpace>
   );
