@@ -12,9 +12,7 @@ interface IFormInput {
   confirmPassword: string;
 }
 
-type Props = {};
-
-const SignUp = (props: Props) => {
+const SignUp = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();

@@ -1,10 +1,7 @@
-import React from "react";
 import { BlackBorderedSpace } from "../../BlackBorderedSpace";
 import Avatar from "../../../assets/conversation/avatar.svg";
 
 import styles from "./style.module.scss";
-
-type Props = {};
 
 type TYPE_MOCKED_DATA = {
   avatar: string;
@@ -22,7 +19,7 @@ const MOCKED_DATA: TYPE_MOCKED_DATA = {
   time: "10:12",
 };
 
-const Messages = (props: Props) => {
+const Messages = () => {
   return (
     <BlackBorderedSpace width={150} height={51} title="Messages">
       <div className={styles.container}>

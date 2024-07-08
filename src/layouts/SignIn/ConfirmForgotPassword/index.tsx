@@ -9,14 +9,12 @@ import { useSelector } from "react-redux";
 import BackArrow from "../../../assets/BackArrow.svg";
 import { ReducersType } from "../../../redux/store";
 
-type Props = {};
-
 interface IFormInput {
   password: string;
   confirm_password: string;
 }
 
-const ConfirmForgotPassword = (props: Props) => {
+const ConfirmForgotPassword = () => {
   const navigate = useNavigate();
 
   const { email, otp } = useSelector(

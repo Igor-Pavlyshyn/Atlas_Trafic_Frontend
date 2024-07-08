@@ -1,10 +1,7 @@
-import React from "react";
 import { BlackBorderedSpace } from "../../BlackBorderedSpace";
 import { LinearProgress } from "@mui/material";
 
 import styles from "./style.module.scss";
-
-type Props = {};
 
 type TYPE_MOCKED_DATA = {
   name: string;
@@ -22,7 +19,7 @@ const MOCKED_DATA: TYPE_MOCKED_DATA = {
   max_progress_2: 110,
 };
 
-const TaskProgress = (props: Props) => {
+const TaskProgress = () => {
   const {
     current_progress_1,
     current_progress_2,
@@ -33,8 +30,6 @@ const TaskProgress = (props: Props) => {
 
   const firstProgressValue = (current_progress_1 / max_progress_1) * 100;
   const secondProgressValue = (current_progress_2 / max_progress_2) * 100;
-
-  console.log(firstProgressValue, secondProgressValue, "21");
 
   return (
     <BlackBorderedSpace width={103} height={82}>

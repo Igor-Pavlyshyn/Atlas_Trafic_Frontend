@@ -1,14 +1,4 @@
-import React from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const data = [
   { name: "0", uv: 200 },
@@ -50,7 +40,7 @@ const ColorfulChart = () => (
         left: 20,
         bottom: 5,
       }}
-      barSize={50}
+      barSize={20}
     >
       <XAxis dataKey="name" />
       <YAxis />

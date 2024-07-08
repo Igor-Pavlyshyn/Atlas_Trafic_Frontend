@@ -1,8 +1,7 @@
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import SignIn from "../layouts/SignIn/index.tsx";
 import SignUpFirst from "../layouts/SignUp/SignUpFirst/index.tsx";
 import SignUpSecond from "../layouts/SignUp/SignUpSecond/index.tsx";
-import SignUpThird from "../layouts/SignUp/SignUpThird/index.tsx";
 import { PrivateRoute } from "./HOC.tsx";
 import ForgotPassword from "../layouts/SignIn/ForgotPassword";
 import Verify from "../layouts/SignIn/Verify";

@@ -1,19 +1,8 @@
-import React from "react";
 import ComponentModal from "../ComponentModal";
-import {
-  BarChart,
-  Bar,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis } from "recharts";
 import Arrow from "../../assets/Pink_arrow.svg";
 
 import styles from "./style.module.scss";
-
-type Props = {};
 
 const data = [
   { time: "|", uv: 0.5 },
@@ -28,8 +17,6 @@ const data = [
   { time: "10", uv: 1.4 },
   { time: "|", uv: 1.0 },
 ];
-
-const ticks = [0, 50000, 500000, 1000000, 3000000];
 
 const CustomizedLabel = (props: any) => {
   const { x, y, width, value } = props;
@@ -60,7 +47,7 @@ const CustomizedTick = (props: any) => {
   );
 };
 
-const PriceStatistics = (props: Props) => {
+const PriceStatistics = () => {
   return (
     <ComponentModal title="Price Statistics" width={382} height={244} seeMore>
       <div className={styles.container}>

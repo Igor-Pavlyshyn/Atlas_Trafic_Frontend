@@ -1,4 +1,3 @@
-import React from "react";
 import { BlackBorderedSpace } from "../../BlackBorderedSpace";
 import { GradientButton } from "../../GradientButton";
 
@@ -6,8 +5,6 @@ import TimeSvg from "../../../assets/conversation/time.svg";
 import ManagerSvg from "../../../assets/conversation/manager.svg";
 
 import styles from "./style.module.scss";
-
-type Props = {};
 
 type MOCKED_DATA_TYPE = {
   title: string;
@@ -23,7 +20,7 @@ const MOCKED_DATA: MOCKED_DATA_TYPE = {
   endTime: "11:00 AM",
 };
 
-const TodaySchedule = (props: Props) => {
+const TodaySchedule = () => {
   const { title, name, endTime, startTime } = MOCKED_DATA;
 
   return (

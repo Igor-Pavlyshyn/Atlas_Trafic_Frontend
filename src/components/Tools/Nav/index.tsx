@@ -1,4 +1,3 @@
-import React from "react";
 import NavLinkComponent from "./NavLink";
 
 import MaintenanceSvg from "../../../assets/tools/maintenance.svg";
@@ -16,8 +15,6 @@ type DATA_TYPE = {
   link: string;
 }[];
 
-type Props = {};
-
 const MOCKED_DATA: DATA_TYPE = [
   { text: "Maintenance", svg: MaintenanceSvg, link: "/" },
   { text: "Traffic Violations", svg: TrafficSvg, link: "&traffic" },
@@ -27,7 +24,7 @@ const MOCKED_DATA: DATA_TYPE = [
   { text: "Road Work", svg: RoadSvg, link: "/" },
 ];
 
-const Nav = (props: Props) => {
+const Nav = () => {
   return (
     <div className={styles.container}>
       {MOCKED_DATA?.map((item, index) => (

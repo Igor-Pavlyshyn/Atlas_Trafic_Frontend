@@ -1,6 +1,5 @@
-import React from "react";
 import ComponentModal from "../ComponentModal";
-import { Cell, Legend, Pie, PieChart } from "recharts";
+import { Cell, Pie, PieChart } from "recharts";
 import { COLORS } from "../../constants/scss/COLORS";
 import YellowLine from "../../assets/Yellow_line.svg";
 import LightBlueLine from "../../assets/Lightblue_line.svg";
@@ -8,8 +7,6 @@ import BlueLine from "../../assets/Blue_line.svg";
 import PurpleLine from "../../assets/Purple_line.svg";
 
 import styles from "./style.module.scss";
-
-type Props = {};
 
 const data = [
   { name: "Penthouses", value: 8, units: 27, color: "#f7c159" },
@@ -27,7 +24,7 @@ const data2 = [
   },
 ];
 
-const Health = (props: Props) => {
+const Health = () => {
   return (
     <ComponentModal width={382} height={299}>
       <div className={styles.container}>

@@ -1,4 +1,3 @@
-import React from "react";
 import { BlackBorderedSpace } from "../../BlackBorderedSpace";
 import ClockSvg from "../../../assets/conversation/clock.svg";
 
@@ -18,9 +17,7 @@ const MOCKED_DATA: TYPE_MOCKED_DATA = {
   date: "Tuesday, May 16",
 };
 
-type Props = {};
-
-const Clock = (props: Props) => {
+const Clock = () => {
   const { count, date, part, time } = MOCKED_DATA;
 
   return (

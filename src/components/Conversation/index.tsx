@@ -1,4 +1,3 @@
-import React from "react";
 import ComponentModal from "../ComponentModal";
 import TodaySchedule from "./TodaySchedule";
 import Weather from "./Weather";
@@ -11,9 +10,7 @@ import styles from "./style.module.scss";
 import Note from "./Note";
 import Support from "./Support";
 
-type Props = {};
-
-const Conversation = (props: Props) => {
+const Conversation = () => {
   return (
     <ComponentModal width={382}>
       <div className={styles.container}>

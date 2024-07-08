@@ -1,9 +1,6 @@
-import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
 import styles from "./style.module.scss";
-
-type Props = {};
 
 const data = [
   { name: "Penthouses", value: 8, units: 27, color: "#8d5ad2" },
@@ -11,7 +8,7 @@ const data = [
   { name: "Multi family", value: 17, units: 105, color: "#036e23" },
 ];
 
-const Chart = (props: Props) => {
+const Chart = () => {
   const NUMBER = 57;
 
   return (

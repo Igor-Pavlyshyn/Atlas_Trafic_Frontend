@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { COLORS } from "../../constants/scss/COLORS";
-import { title } from "process";
 import Dots from "../../assets/three_dots.svg";
 
 import styles from "./style.module.scss";

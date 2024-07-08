@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { useEffect } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./style.module.scss";
 import Arrow from "../../../assets/Arrow.svg";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,9 +15,7 @@ interface IFormInput {
   answer_3: string;
 }
 
-type Props = {};
-
-const SignUpSecond = (props: Props) => {
+const SignUpSecond = () => {
   const navigate = useNavigate();
 
   const { email, password } = useSelector(

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import Arrow from "../../../assets/Arrow.svg";
 import BackArrow from "../../../assets/BackArrow.svg";
 import Pencil from "../../../assets/Pencil.svg";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,25 +9,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducersType } from "../../../redux/store";
 import { loginActions } from "../../../redux/slices/loginSlice";
 
-interface IFormInput {
-  firstAnswer: string;
-  secondAnswer: string;
-  thirdAnswer: string;
-}
-
-type Props = {};
-
-const SignUpThird = (props: Props) => {
+const SignUpThird = () => {
   const [otp, setOtp] = useState<string | undefined>();
   const [isAvailableRequest, setIsAvailableRequest] = useState<boolean>(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [verifyOtp, { data: tokens, isError, isLoading, isSuccess }] =
-    useAuthMutation();
-  const [resendOtp, { data: resendData, isSuccess: successResend }] =
-    useAuthMutation();
+  const [verifyOtp, { data: tokens, isSuccess }] = useAuthMutation();
+  const [resendOtp, { isSuccess: successResend }] = useAuthMutation();
 
   const email = useSelector(
     (state: ReducersType) => state.reducers.loginReducer.email

@@ -1,5 +1,4 @@
 import { PieChart } from "@mui/x-charts";
-import React from "react";
 import { COLORS } from "../../constants/scss/COLORS";
 import TopLine from "../../assets/charts/TopLine.svg";
 import BottomLine from "../../assets/charts/BottomLine.svg";
@@ -21,8 +20,6 @@ const StickChart = ({ title, word1, word2 }: Props) => {
       color: "green",
     }),
   ];
-
-  console.log(word1);
 
   return (
     <div className={styles.container}>

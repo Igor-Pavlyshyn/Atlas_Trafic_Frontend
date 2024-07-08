@@ -1,4 +1,3 @@
-import React from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import styles from "./style.module.scss";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,17 +9,14 @@ export interface IFormInput {
   password: string;
 }
 
-type Props = {};
-
-const SignIn = (props: Props) => {
+const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const {
     control,
-    register,
+
     handleSubmit,
-    formState: { errors },
   } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = (data) => {
     dispatch(loginActions.addFirstStepInfo(data));

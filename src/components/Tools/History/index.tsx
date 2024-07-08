@@ -1,11 +1,8 @@
-import React from "react";
 import { BlackBorderedSpace } from "../../BlackBorderedSpace";
 
 import styles from "./style.module.scss";
 
-type Props = {};
-
-const History = (props: Props) => {
+const History = () => {
   return (
     <BlackBorderedSpace width={199} height={35}>
       <div className={styles.container}>

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import Arrow from "../../../assets/Arrow.svg";
 import BackArrow from "../../../assets/BackArrow.svg";
 import Pencil from "../../../assets/Pencil.svg";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,15 +10,7 @@ import { ReducersType } from "../../../redux/store";
 import { loginActions } from "../../../redux/slices/loginSlice";
 import { GradientButton } from "../../../components/GradientButton";
 
-interface IFormInput {
-  firstAnswer: string;
-  secondAnswer: string;
-  thirdAnswer: string;
-}
-
-type Props = {};
-
-const SignUpThird = (props: Props) => {
+const SignUpThird = () => {
   const [otp, setOtp] = useState<string | undefined>();
   const [availableResend, setAvailableResend] = useState<boolean>(true);
 

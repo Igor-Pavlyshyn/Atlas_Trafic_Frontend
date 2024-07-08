@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { COLORS } from "../../constants/scss/COLORS";
-import File from "../../assets/home/File.svg";
-import { ImgHTMLAttributes, ReactNode } from "react";
 
 interface StyledButtonProps {
   width?: number;

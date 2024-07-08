@@ -1,12 +1,9 @@
-import React from "react";
 import ComponentModal from "../ComponentModal";
 
 import styles from "./style.module.scss";
 import StickChart from "../StickChart";
 
-type Props = {};
-
-const Scores = (props: Props) => {
+const Scores = () => {
   return (
     <ComponentModal title="Scores" width={296} height={190} seeMore>
       <div className={styles.container}>

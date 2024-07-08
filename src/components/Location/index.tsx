@@ -1,11 +1,8 @@
-import React, { useState } from "react";
 import ComponentModal from "../ComponentModal";
 import Circle from "../../assets/Green_circle.svg";
 import LocationSvg from "../../assets/location.svg";
 
 import styles from "./style.module.scss";
-
-type Props = {};
 
 const MOCKED_DATA = {
   id: 1234,
@@ -14,8 +11,8 @@ const MOCKED_DATA = {
   live: true,
 };
 
-const Location = (props: Props) => {
-  const [isLive, setIsLive] = useState<boolean>(true);
+const Location = () => {
+  // const [isLive, setIsLive] = useState<boolean>(true);
 
   return (
     <ComponentModal

@@ -26,6 +26,8 @@ export const loginSlice = createSlice({
     },
     anullateState: (state) => {
       state = {};
+      Object.assign(state, {});
+      return {};
     },
   },
 });

@@ -34,7 +34,6 @@ const ComponentModal = ({
   height,
   svg = false,
   padding = true,
-  ...rest
 }: Props) => {
   return (
     <StyledSection

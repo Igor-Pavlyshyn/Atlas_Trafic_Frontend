@@ -1,10 +1,8 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { useAuthMutation } from "./redux/api/auth";
-import { RouterProvider, redirect, useNavigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
-import { useSelector } from "react-redux";
-import { ReducersType } from "./redux/store";
 
 function App() {
   const [refreshToken, { data, isSuccess, isError }] = useAuthMutation();

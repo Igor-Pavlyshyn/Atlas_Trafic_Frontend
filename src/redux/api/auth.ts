@@ -2,7 +2,6 @@ import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
-  RootState,
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
@@ -18,7 +17,7 @@ interface IAuthRequest {
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
-  prepareHeaders: (headers, { getState }) => {
+  prepareHeaders: (headers) => {
     const accessToken = localStorage.getItem("access");
     if (accessToken) {
       headers.set("authorization", `Bearer ${accessToken}`);

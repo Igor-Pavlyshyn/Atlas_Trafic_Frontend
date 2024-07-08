@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import styles from "./style.module.scss";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
@@ -9,19 +9,12 @@ import { useDispatch } from "react-redux";
 import { loginActions } from "../../../redux/slices/loginSlice";
 import BackArrow from "../../../assets/BackArrow.svg";
 
-type Props = {};
-
-const ForgotPassword = (props: Props) => {
+const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInput>();
+  const { control, handleSubmit } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = ({ email }) => {
     dispatch(loginActions.addFirstStepInfo({ email, password: null }));
     sendOtp({
@@ -32,7 +25,7 @@ const ForgotPassword = (props: Props) => {
       },
     });
   };
-  const [sendOtp, { data, error, isSuccess, isError }]: any = useAuthMutation();
+  const [sendOtp, { error, isSuccess, isError }]: any = useAuthMutation();
 
   useEffect(() => {
     if (isError) {

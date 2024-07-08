@@ -1,13 +1,10 @@
-import React from "react";
 import { BlackBorderedSpace } from "../../BlackBorderedSpace";
 import Pencil from "../../../assets/Pencil.svg";
 import UploadPhoto from "../../../assets/conversation/upload.svg";
 
 import styles from "./style.module.scss";
 
-type Props = {};
-
-const Note = (props: Props) => {
+const Note = () => {
   return (
     <BlackBorderedSpace title="New Note" width={211} height={58}>
       <div className={styles.container}>

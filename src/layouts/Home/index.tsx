@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuthMutation, useLogoutMutation } from "../../redux/api/auth";
 import { BlueButton } from "../../components/BlueButton";
 
 // SVG
@@ -12,9 +9,7 @@ import Scores from "../../components/Scores";
 import Location from "../../components/Location";
 import CameraView from "../../components/CameraView";
 import PriceStatistics from "../../components/PriceStatistics";
-import { BlackBorderedSpace } from "../../components/BlackBorderedSpace";
 import Conversation from "../../components/Conversation";
-import Weather from "../../components/Conversation/Weather";
 import Health from "../../components/Health";
 
 import styles from "./style.module.scss";
@@ -22,26 +17,24 @@ import Map from "../../components/Map";
 import Tools from "../../components/Tools";
 import TrafficViolation from "../../components/TrafficViolation";
 
-type Props = {};
+const Home = () => {
+  // const navigate = useNavigate();
+  // const refresh = localStorage.getItem("refresh");
 
-const Home = (props: Props) => {
-  const navigate = useNavigate();
-  const refresh = localStorage.getItem("refresh");
+  // const [logout] = useLogoutMutation();
 
-  const [logout, { isSuccess }] = useLogoutMutation();
-
-  const logoutHandler = () => {
-    if (refresh) {
-      logout({ refresh });
-    }
-    if (localStorage.getItem("access")) {
-      localStorage.removeItem("access");
-    }
-    if (localStorage.getItem("refresh")) {
-      localStorage.removeItem("refresh");
-    }
-    return navigate("/signIn");
-  };
+  // const logoutHandler = () => {
+  //   if (refresh) {
+  //     logout({ refresh });
+  //   }
+  //   if (localStorage.getItem("access")) {
+  //     localStorage.removeItem("access");
+  //   }
+  //   if (localStorage.getItem("refresh")) {
+  //     localStorage.removeItem("refresh");
+  //   }
+  //   return navigate("/signIn");
+  // };
 
   return (
     <section>
@@ -77,7 +70,7 @@ const Home = (props: Props) => {
           <div>
             <Tools />
           </div>
-          {/* <TrafficViolation /> */}
+          <TrafficViolation />
         </div>
 
         <div className={styles.container_top_rows_fourthRow}>

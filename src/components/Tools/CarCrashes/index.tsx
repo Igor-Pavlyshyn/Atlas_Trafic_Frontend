@@ -1,4 +1,3 @@
-import React from "react";
 import { BlackBorderedSpace } from "../../BlackBorderedSpace";
 
 import WarningSvg from "../../../assets/icons/tools/Warning.svg";
@@ -7,9 +6,7 @@ import CrashesImage from "../../../assets/crash.png";
 
 import styles from "./style.module.scss";
 
-type Props = {};
-
-const CarCrashes = (props: Props) => {
+const CarCrashes = () => {
   return (
     <BlackBorderedSpace width={242} height={86}>
       <div className={styles.container}>
