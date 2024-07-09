@@ -15,6 +15,8 @@ import Health from "../../components/Health";
 import styles from "./style.module.scss";
 import Map from "../../components/Map";
 import Tools from "../../components/Tools";
+import TrafficViolation from "../../components/TrafficViolation";
+import Cameras from "../../components/TrafficViolation/Cameras";
 
 const Home = () => {
   // const navigate = useNavigate();
@@ -66,10 +68,10 @@ const Home = () => {
           <div>
             <Map />
           </div>
-          <div>
+          <div className={styles.container_bottom_left}>
             <Tools />
+            <TrafficViolation />
           </div>
-          {/* <TrafficViolation /> */}
         </div>
 
         <div className={styles.container_top_rows_fourthRow}>

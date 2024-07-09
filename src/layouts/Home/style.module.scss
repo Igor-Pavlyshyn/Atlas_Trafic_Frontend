@@ -4,6 +4,11 @@
   gap: 8px;
   //   }
 
+  &_bottom_left {
+    display: flex;
+    gap: 8px;
+  }
+
   &_top {
     display: flex;
     flex-direction: column;
