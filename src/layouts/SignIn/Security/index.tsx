@@ -39,9 +39,6 @@ const SignUpSecond = () => {
   };
 
   useEffect(() => {
-    if (!email) {
-      return navigate("/signIn");
-    }
     if (isError) {
       return alert(error?.data?.detail);
     }
