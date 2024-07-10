@@ -35,9 +35,6 @@ const StickChart = ({ title, word1, word2 }: Props) => {
               paddingAngle: 2,
               cornerRadius: 2,
               startAngle: -90,
-              // endAngle: 180,
-              // cx: 250,
-              // cy: 150,
               cx: 55,
             },
           ]}

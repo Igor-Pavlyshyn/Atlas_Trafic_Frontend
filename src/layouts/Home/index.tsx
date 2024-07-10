@@ -52,6 +52,9 @@ const Home = () => {
                 <BlueButton width={164} svg={TaskSvg}>
                   Assign Task
                 </BlueButton>
+                <BlueButton width={136} svg={TaskSvg}>
+                  Agenda
+                </BlueButton>
               </div>
             </div>
 

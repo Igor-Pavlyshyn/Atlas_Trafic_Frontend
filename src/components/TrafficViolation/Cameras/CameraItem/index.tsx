@@ -15,7 +15,12 @@ const CameraItem = ({ notifications, title, total }: Props) => {
     <BlackBorderedSpace title={title} width={112} height={115}>
       <div className={styles.container}>
         <FormControl fullWidth>
-          <Select hiddenLabel id="demo-simple-select">
+          <Select
+            hiddenLabel
+            id="demo-simple-select"
+            placeholder="All intersection"
+            inputProps={{ style: { color: "white" } }}
+          >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
             <MenuItem value={30}>Thirty</MenuItem>
