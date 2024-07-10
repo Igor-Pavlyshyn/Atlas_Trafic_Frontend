@@ -1,0 +1,12 @@
+.container {
+  &_title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  &_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

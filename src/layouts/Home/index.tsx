@@ -17,6 +17,8 @@ import Map from "../../components/Map";
 import Tools from "../../components/Tools";
 import TrafficViolation from "../../components/TrafficViolation";
 
+import Navigation from "../../components/Navigation";
+
 const Home = () => {
   // const navigate = useNavigate();
   // const refresh = localStorage.getItem("refresh");
@@ -37,7 +39,7 @@ const Home = () => {
   // };
 
   return (
-    <section>
+    <section className={styles.other_content}>
       <div className={styles.container}>
         <div className={styles.container_top}>
           <div className={styles.container_top_rows}>
@@ -79,6 +81,7 @@ const Home = () => {
           <Health />
         </div>
       </div>
+      <Navigation />
     </section>
   );
 };
