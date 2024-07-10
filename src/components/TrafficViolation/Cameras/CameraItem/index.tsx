@@ -1,4 +1,10 @@
-import { FormControl, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputBase,
+  MenuItem,
+  Select,
+  styled,
+} from "@mui/material";
 import { BlackBorderedSpace } from "../../../BlackBorderedSpace";
 import CameraImage from "../../../../assets/Cameras_picture.png";
 
@@ -10,21 +16,52 @@ type Props = {
   total: string;
 };
 
+const CustomInput = styled(InputBase)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(3),
+  },
+  "& .MuiInputBase-input": {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: "#1C1333",
+    border: "1px solid #3A2E59",
+    fontSize: 10,
+    textAlign: "start",
+    color: "white",
+    height: "24px",
+    padding: "0 26px 0 12px",
+  },
+  "& .MuiSvgIcon-root": {
+    color: "white",
+  },
+}));
+
+const CustomSelect = styled(Select)(() => ({
+  "& .MuiSelect-icon": {
+    color: "white",
+  },
+}));
+
 const CameraItem = ({ notifications, title, total }: Props) => {
   return (
     <BlackBorderedSpace title={title} width={112} height={115}>
       <div className={styles.container}>
         <FormControl fullWidth>
-          <Select
+          <CustomSelect
             hiddenLabel
-            id="demo-simple-select"
-            placeholder="All intersection"
-            inputProps={{ style: { color: "white" } }}
+            defaultValue={"All intersection"}
+            input={<CustomInput />}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  backgroundColor: "#1C1333",
+                  color: "white",
+                },
+              },
+            }}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+            <MenuItem value="All intersection">All intersection</MenuItem>
+          </CustomSelect>
         </FormControl>
         <img src={CameraImage} alt="camera" />
         <div className={styles.container_notifications}>
