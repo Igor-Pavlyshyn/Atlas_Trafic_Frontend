@@ -19,7 +19,7 @@ const Location = () => {
       title="Selected Location"
       svg={LocationSvg}
       width={210}
-      height={190}
+      height={230}
     >
       <div className={styles.container}>
         <p>

@@ -7,6 +7,7 @@ interface StyledProps {
   width?: number;
   height?: number;
   padding?: boolean;
+  paddingTop?: boolean;
 }
 
 interface Props extends StyledProps {
@@ -17,10 +18,13 @@ interface Props extends StyledProps {
 }
 
 const StyledSection = styled.section<StyledProps>`
+  max-width: ${(props) =>
+    props.width ? `${props.width}px` : "fit-content"} !important;
+  max-height: ${(props) => props.height && `${props.height}px`};
   width: ${(props) =>
     props.width ? `${props.width}px` : "fit-content"} !important;
   height: ${(props) => props.height && `${props.height}px`};
-  padding: ${(props) => (props.padding ? "20px" : "0px")};
+  padding: ${(props) => (props.padding ? "0px 16px 0px 16px" : "0px")};
 `;
 const HeaderDiv = styled.div<StyledProps>`
   padding: ${(props) => !props.padding && "0px 16px 0px 16px"} !important;
@@ -34,6 +38,7 @@ const ComponentModal = ({
   height,
   svg = false,
   padding = true,
+  paddingTop = false,
 }: Props) => {
   return (
     <StyledSection
@@ -43,7 +48,11 @@ const ComponentModal = ({
       height={height}
     >
       {(title || seeMore) && (
-        <HeaderDiv className={styles.container_header} padding={padding}>
+        <HeaderDiv
+          className={styles.container_header}
+          padding={padding}
+          paddingTop={paddingTop}
+        >
           {title && (
             <h1>
               {svg && <img src={svg} alt="location" />} {title}

@@ -12,7 +12,7 @@ import Support from "./Support";
 
 const Conversation = () => {
   return (
-    <ComponentModal width={382}>
+    <ComponentModal width={382} padding={true}>
       <div className={styles.container}>
         <div className={styles.container_top}>
           <div className={styles.container_top_schedule}>

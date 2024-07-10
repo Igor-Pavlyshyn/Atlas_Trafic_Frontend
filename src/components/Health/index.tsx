@@ -26,7 +26,7 @@ const data2 = [
 
 const Health = () => {
   return (
-    <ComponentModal width={382} height={299}>
+    <ComponentModal width={282}>
       <div className={styles.container}>
         <h1>Intersection Health</h1>
         <div className={styles.container_pie}>
@@ -39,10 +39,10 @@ const Health = () => {
                 {data[0].units}
               </p>
             </div>
-            <img src={YellowLine} alt="yellow line" />
+            <img src={YellowLine} alt="yellow line" width={46} height={46} />
           </div>
           <div className={styles.container_pie_rightTopCorner}>
-            <img src={LightBlueLine} alt="light line" />
+            <img src={LightBlueLine} alt="light line" width={46} height={46} />
             <div>
               <p>{data[1].name}</p>
               <p>{data[1].value}%</p>
@@ -53,7 +53,7 @@ const Health = () => {
             </div>
           </div>
           <div className={styles.container_pie_rightBottomCorner}>
-            <img src={BlueLine} alt="" />
+            <img src={BlueLine} alt="" width={46} height={46} />
             <div>
               <p>{data[3].name}</p>
               <p>{data[3].value}%</p>
@@ -73,7 +73,7 @@ const Health = () => {
               </p>
             </div>
             <div className={styles.container_pie_rightBottomCorner}>
-              <img src={PurpleLine} alt="" />
+              <img src={PurpleLine} alt="" width={46} height={46} />
             </div>
           </div>
           <PieChart width={156} height={156}>
@@ -82,8 +82,8 @@ const Health = () => {
               cx="50%"
               cy="50%"
               labelLine={false}
-              outerRadius={66}
-              innerRadius={55}
+              outerRadius={44}
+              innerRadius={35}
               cornerRadius={50}
               fill="#8884d8"
               stroke="none"
@@ -95,7 +95,7 @@ const Health = () => {
             </Pie>
           </PieChart>
           <div className={styles.container_pie_inside}>
-            <PieChart width={400} height={400}>
+            <PieChart width={200} height={200}>
               <Pie
                 width={106}
                 height={106}
@@ -103,8 +103,8 @@ const Health = () => {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={50}
-                innerRadius={40}
+                outerRadius={31}
+                innerRadius={25}
                 startAngle={400}
                 endAngle={200}
                 cornerRadius={30}

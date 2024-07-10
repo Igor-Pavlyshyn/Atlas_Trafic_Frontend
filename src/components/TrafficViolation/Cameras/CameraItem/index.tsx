@@ -44,7 +44,7 @@ const CustomSelect = styled(Select)(() => ({
 
 const CameraItem = ({ notifications, title, total }: Props) => {
   return (
-    <BlackBorderedSpace title={title} width={112} height={115}>
+    <BlackBorderedSpace title={title} width={112} paddingTop={true}>
       <div className={styles.container}>
         <FormControl fullWidth>
           <CustomSelect

@@ -1,6 +1,10 @@
 .container {
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1330px) {
+    flex-direction: row;
+  }
+
   gap: 4px;
-  align-items: end;
 }

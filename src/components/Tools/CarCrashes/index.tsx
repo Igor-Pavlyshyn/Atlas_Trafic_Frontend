@@ -8,7 +8,7 @@ import styles from "./style.module.scss";
 
 const CarCrashes = () => {
   return (
-    <BlackBorderedSpace width={242} height={86}>
+    <BlackBorderedSpace width={222} height={86}>
       <div className={styles.container}>
         <div className={styles.container_header}>
           <img src={WarningSvg} alt="Warning" />
@@ -16,7 +16,7 @@ const CarCrashes = () => {
           <img src={ArrowUpSvg} alt="arrow" />
         </div>
         <div className={styles.container_body}>
-          <img src={CrashesImage} alt="crashes" />
+          <img src={CrashesImage} alt="crashes" width={220} />
         </div>
       </div>
     </BlackBorderedSpace>

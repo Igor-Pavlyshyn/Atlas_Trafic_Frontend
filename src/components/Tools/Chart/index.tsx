@@ -19,9 +19,9 @@ const Chart = () => {
           cx="50%"
           cy="50%"
           labelLine={false}
-          outerRadius={66}
-          innerRadius={55}
-          cornerRadius={50}
+          outerRadius={56}
+          innerRadius={45}
+          // cornerRadius={50}
           fill="#8884d8"
           stroke="none"
           dataKey="value"

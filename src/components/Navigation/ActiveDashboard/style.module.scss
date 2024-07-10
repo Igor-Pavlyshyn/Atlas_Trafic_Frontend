@@ -1,4 +1,11 @@
 .container {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 0px 10px 0px;
+
   &_title {
     margin-top: 10px;
     margin-bottom: 5px;

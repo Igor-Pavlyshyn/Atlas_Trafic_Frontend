@@ -7,7 +7,7 @@ import TaskSvg from "../../assets/home/Task.svg";
 
 import Scores from "../../components/Scores";
 import Location from "../../components/Location";
-import CameraView from "../../components/CameraView";
+
 import PriceStatistics from "../../components/PriceStatistics";
 import Conversation from "../../components/Conversation";
 import Health from "../../components/Health";
@@ -42,6 +42,38 @@ const Home = () => {
     <section className={styles.other_content}>
       <div className={styles.container}>
         <div className={styles.container_top}>
+          <div>
+            <Scores />
+            <div className={styles.container_top_buttons}>
+              <BlueButton width={164} svg={FileSvg}>
+                Export reports
+              </BlueButton>
+              <BlueButton width={164} svg={TaskSvg}>
+                Assign Task
+              </BlueButton>
+              <BlueButton width={136} svg={TaskSvg}>
+                Agenda
+              </BlueButton>
+            </div>
+          </div>
+          <div>
+            <Location />
+            <BlueButton width={250} svg={AlarmSvg}>
+              Assign Emergency Services
+            </BlueButton>
+          </div>
+          <PriceStatistics />
+        </div>
+        <div className={styles.container_middle}>
+          <Map />
+          <Conversation />
+        </div>
+        <div className={styles.container_bottom}>
+          <Tools />
+          <TrafficViolation />
+          <Health />
+        </div>
+        {/* <div className={styles.container_top}>
           <div className={styles.container_top_rows}>
             <div className={styles.container_top_rows_firstRow}>
               <Scores />
@@ -75,14 +107,13 @@ const Home = () => {
           <div className={styles.container_bottom_left}>
             <Tools />
             <TrafficViolation />
+            <Health />
           </div>
         </div>
 
         <div className={styles.container_top_rows_fourthRow}>
-          <PriceStatistics />
           <Conversation />
-          <Health />
-        </div>
+        </div> */}
       </div>
       <Navigation />
     </section>

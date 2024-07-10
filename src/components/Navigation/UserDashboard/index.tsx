@@ -26,12 +26,10 @@ const UserDashboard = () => {
   return (
     <ComponentModal>
       <div className={styles.container}>
-        <div className={styles.container_title}>
-          User <br /> Dashboard
-        </div>
+        <div className={styles.container_title}>User Dashboard</div>
         <div className={styles.container_buttons}>
           {MOCKED_DATA.map((item, index) => (
-            <GradientButton height={24} key={index}>
+            <GradientButton height={24} key={index} width={152}>
               {item.text}
             </GradientButton>
           ))}

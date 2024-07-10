@@ -8,15 +8,18 @@ import History from "./History";
 
 const Tools = () => {
   return (
-    <ComponentModal width={466} height={300}>
+    <ComponentModal width={466}>
       <div className={styles.container}>
-        <div className={styles.container_leftSide}>
-          <CarCrashes />
-          <Chart />
-        </div>
-        <div className={styles.container_rightSide}>
-          <Nav />
-          <History />
+        <div className={styles.container_title}>Notification Center</div>
+        <div className={styles.container_content}>
+          <div className={styles.container_content_leftSide}>
+            <CarCrashes />
+            <Chart />
+          </div>
+          <div className={styles.container_content_rightSide}>
+            <Nav />
+            <History />
+          </div>
         </div>
       </div>
     </ComponentModal>

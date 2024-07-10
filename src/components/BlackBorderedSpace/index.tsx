@@ -7,6 +7,7 @@ import styles from "./style.module.scss";
 interface StyledSpaceProps {
   width?: number;
   height?: number;
+  paddingTop?: boolean;
 }
 
 interface BlackBorderedSpaceProps extends StyledSpaceProps {
@@ -19,13 +20,18 @@ const BlackStyledBorderedSpace = styled.div<StyledSpaceProps>`
     props.width ? `${props.width}px` : "fit-content"} !important;
   height: ${(props) =>
     props.height ? `${props.height}px` : "fit-content"} !important;
+  max-width: ${(props) =>
+    props.width ? `${props.width}px` : "fit-content"} !important;
+  max-height: ${(props) =>
+    props.height ? `${props.height}px` : "fit-content"} !important;
 
   background-color: ${COLORS.BLACK_1};
 
   border: 1px solid ${COLORS.DARK_PURPLE};
   border-radius: 8px;
 
-  padding: 8px;
+  padding: ${(props) =>
+    props.paddingTop ? "0px 8px 0px 8px" : "8px"} !important;
 `;
 
 export const BlackBorderedSpace = ({
@@ -33,9 +39,14 @@ export const BlackBorderedSpace = ({
   height,
   width,
   title,
+  paddingTop = false,
 }: BlackBorderedSpaceProps) => {
   return (
-    <BlackStyledBorderedSpace height={height} width={width}>
+    <BlackStyledBorderedSpace
+      height={height}
+      width={width}
+      paddingTop={paddingTop}
+    >
       {title && (
         <div className={styles.header}>
           <p>{title}</p>
