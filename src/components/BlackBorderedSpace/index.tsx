@@ -8,6 +8,7 @@ interface StyledSpaceProps {
   width?: number;
   height?: number;
   paddingTop?: boolean;
+  seeMore?: boolean;
 }
 
 interface BlackBorderedSpaceProps extends StyledSpaceProps {
@@ -26,12 +27,18 @@ const BlackStyledBorderedSpace = styled.div<StyledSpaceProps>`
     props.height ? `${props.height}px` : "fit-content"} !important;
 
   background-color: ${COLORS.BLACK_1};
+  cursor: pointer;
 
   border: 1px solid ${COLORS.DARK_PURPLE};
   border-radius: 8px;
 
   padding: ${(props) =>
     props.paddingTop ? "0px 8px 0px 8px" : "8px"} !important;
+
+  transition: all 300ms ease-in-out;
+  &:hover {
+    background: ${COLORS.BLACK_HOVER_1};
+  }
 `;
 
 export const BlackBorderedSpace = ({
@@ -40,6 +47,7 @@ export const BlackBorderedSpace = ({
   width,
   title,
   paddingTop = false,
+  seeMore = false,
 }: BlackBorderedSpaceProps) => {
   return (
     <BlackStyledBorderedSpace
@@ -50,7 +58,11 @@ export const BlackBorderedSpace = ({
       {title && (
         <div className={styles.header}>
           <p>{title}</p>
-          <img src={Dots} alt="dots" width={16} height={16} />
+          {seeMore ? (
+            <p className={styles.seeMore}>See more</p>
+          ) : (
+            <img src={Dots} alt="dots" width={16} height={16} />
+          )}
         </div>
       )}
 

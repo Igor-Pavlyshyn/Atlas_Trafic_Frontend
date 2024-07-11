@@ -47,7 +47,15 @@ const StickChart = ({ title, word1, word2 }: Props) => {
 
       <p>{title}</p>
 
-      <h3 className={word1 == "Environmental" ? styles.enviromental : ""}>
+      <h3
+        className={
+          word1 == "Environmental"
+            ? styles.enviromental
+            : word1 == "Efficiency"
+            ? styles.efficiency
+            : ""
+        }
+      >
         {word1} <br /> {word2}
       </h3>
     </div>

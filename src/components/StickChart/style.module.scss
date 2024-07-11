@@ -8,14 +8,8 @@
   & h3 {
     position: absolute;
 
-    //   bottom: -40px;
-    //   left: 70px;
-    // position: relative;
-    // right: 48px;
-    // bottom: 55px;
-
     bottom: -30px;
-    left: 45px;
+    left: 44px;
 
     font-size: 12px;
     text-align: center;
@@ -26,14 +20,20 @@
   & h3.enviromental {
     position: absolute;
 
-    //   bottom: -40px;
-    //   left: 70px;
-    // position: relative;
-    // right: 48px;
-    // bottom: 55px;
+    bottom: -30px;
+    left: 22px;
+
+    font-size: 12px;
+    text-align: center;
+    font-weight: 300;
+    font-family: Inter;
+    line-height: 20px;
+  }
+  & h3.efficiency {
+    position: absolute;
 
     bottom: -30px;
-    left: 20px;
+    left: 34px;
 
     font-size: 12px;
     text-align: center;
@@ -43,8 +43,6 @@
   }
   & p {
     position: absolute;
-    // left: 85px;
-    // bottom: 190px;
     top: 34px;
     right: 31px;
 

@@ -11,4 +11,14 @@
       }
     }
   }
+
+  &_details {
+    display: flex;
+    justify-content: space-between;
+
+    & div {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
 }

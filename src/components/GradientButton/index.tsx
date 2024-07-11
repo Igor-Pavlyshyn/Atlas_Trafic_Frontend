@@ -16,5 +16,11 @@ export const GradientButton = styled.button<GradientButtonProps>`
   font-size: 10px;
   font-weight: 600;
   border: none;
+  opacity: 1;
   cursor: pointer;
+
+  transition: all 300ms ease-in-out;
+  &:hover {
+    opacity: 0.6;
+  }
 `;

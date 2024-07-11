@@ -7,12 +7,13 @@ import BlueLine from "../../assets/Blue_line.svg";
 import PurpleLine from "../../assets/Purple_line.svg";
 
 import styles from "./style.module.scss";
+import Arrow from "../../assets/home/Front_arrow.svg";
 
 const data = [
-  { name: "Penthouses", value: 8, units: 27, color: "#f7c159" },
-  { name: "Apartments", value: 47, units: 672, color: "#47bee2" },
-  { name: "Multi family", value: 17, units: 105, color: "#8d5ad2" },
-  { name: "Townhouses", value: 28, units: 194, color: "#0544be" },
+  { name: "Pot Holes", value: 3, units: 4, color: "#f7c159" },
+  { name: "Cracks", value: 1, units: 2, color: "#47bee2" },
+  { name: "Hazards", value: 2, units: 1, color: "#0544be" },
+  { name: "Dead Bulbs", value: 6, units: 1, color: "#8d5ad2" },
 ];
 
 const data2 = [
@@ -28,14 +29,20 @@ const Health = () => {
   return (
     <ComponentModal width={282}>
       <div className={styles.container}>
-        <h1>Intersection Health</h1>
+        <div className={styles.container_title}>
+          <div>Intersection Health</div>
+          <p>Intersection ID : 435</p>
+        </div>
+
         <div className={styles.container_pie}>
+          <div className={styles.main}>Health Score</div>
+          <div className={styles.percentage}>54%</div>
           <div className={styles.container_pie_leftTopCorner}>
             <div>
               <p>{data[0].name}</p>
-              <p>{data[0].value}%</p>
+              <p>Severity: {data[0].value}/10</p>
               <p>
-                Units{"  "}
+                Total:
                 {data[0].units}
               </p>
             </div>
@@ -45,9 +52,9 @@ const Health = () => {
             <img src={LightBlueLine} alt="light line" width={46} height={46} />
             <div>
               <p>{data[1].name}</p>
-              <p>{data[1].value}%</p>
+              <p>Severity: {data[1].value}/10</p>
               <p>
-                Units{"  "}
+                Total:
                 {data[1].units}
               </p>
             </div>
@@ -56,9 +63,9 @@ const Health = () => {
             <img src={BlueLine} alt="" width={46} height={46} />
             <div>
               <p>{data[3].name}</p>
-              <p>{data[3].value}%</p>
+              <p>Severity: {data[3].value}/10</p>
               <p>
-                Units{"  "}
+                Total:
                 {data[3].units}
               </p>
             </div>
@@ -66,9 +73,9 @@ const Health = () => {
           <div className={styles.container_pie_leftBottomCorner}>
             <div>
               <p>{data[2].name}</p>
-              <p>{data[2].value}%</p>
+              <p>Severity: {data[2].value}/10</p>
               <p>
-                Units{"  "}
+                Total:
                 {data[2].units}
               </p>
             </div>
@@ -76,14 +83,14 @@ const Health = () => {
               <img src={PurpleLine} alt="" width={46} height={46} />
             </div>
           </div>
-          <PieChart width={156} height={156}>
+          <PieChart width={156} height={186}>
             <Pie
               data={data}
               cx="50%"
               cy="50%"
               labelLine={false}
-              outerRadius={44}
-              innerRadius={35}
+              outerRadius={54}
+              innerRadius={46}
               cornerRadius={50}
               fill="#8884d8"
               stroke="none"
@@ -95,7 +102,7 @@ const Health = () => {
             </Pie>
           </PieChart>
           <div className={styles.container_pie_inside}>
-            <PieChart width={200} height={200}>
+            <PieChart width={200} height={230}>
               <Pie
                 width={106}
                 height={106}
@@ -103,11 +110,11 @@ const Health = () => {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={31}
-                innerRadius={25}
+                outerRadius={41}
+                innerRadius={35}
                 startAngle={400}
                 endAngle={200}
-                cornerRadius={30}
+                cornerRadius={1}
                 fill="#8884d8"
                 stroke="none"
                 dataKey="value"
@@ -117,6 +124,10 @@ const Health = () => {
                 ))}
               </Pie>
             </PieChart>
+          </div>
+          <div className={styles.see_more}>
+            See More
+            <img src={Arrow} alt="Arrow" width={16} height={16} />
           </div>
         </div>
       </div>

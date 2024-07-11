@@ -16,7 +16,7 @@ const BlueStyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   gap: 8px;
 
-  background: ${COLORS.BLUE_GRADIENT_SECONDARY} !important;
+  background: ${COLORS.BLUE_GRADIENT_SECONDARY};
   color: white;
 
   width: ${(props) => (props.width ? `${props.width}px` : "164px")};
@@ -28,11 +28,17 @@ const BlueStyledButton = styled.button<StyledButtonProps>`
   font-family: Inter;
   font-weight: 600;
 
+  opacity: 1;
   cursor: pointer;
 
   img {
     width: 24px;
     height: 24px;
+  }
+
+  transition: all 300ms ease-in-out;
+  &:hover {
+    opacity: 0.6;
   }
 `;
 

@@ -8,9 +8,15 @@ const History = () => {
       <div className={styles.container}>
         <div className={styles.container_title}>History</div>
         <div className={styles.container_points}>
-          <BlackBorderedSpace height={4}>Current week</BlackBorderedSpace>
-          <BlackBorderedSpace height={4}>Month</BlackBorderedSpace>
-          <BlackBorderedSpace height={4}>Year</BlackBorderedSpace>
+          <BlackBorderedSpace height={4}>
+            <div className={styles.text}>Current week</div>
+          </BlackBorderedSpace>
+          <BlackBorderedSpace height={4}>
+            <div className={styles.text}>Month</div>
+          </BlackBorderedSpace>
+          <BlackBorderedSpace height={4}>
+            <div className={styles.text}>Year</div>
+          </BlackBorderedSpace>
         </div>
       </div>
     </BlackBorderedSpace>

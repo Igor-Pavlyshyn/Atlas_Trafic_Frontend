@@ -28,7 +28,7 @@ const MOCKED_DATA: TYPE_DATA = [
 
 const Cameras = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="scrollable-container">
       {MOCKED_DATA.map((item) => (
         <CameraItem
           title={item.title}

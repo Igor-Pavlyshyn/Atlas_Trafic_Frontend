@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis } from "recharts";
 import Arrow from "../../assets/Pink_arrow.svg";
 
 import styles from "./style.module.scss";
+import { BlackBorderedSpace } from "../BlackBorderedSpace";
 
 const data = [
   { time: "|", uv: 0.5 },
@@ -49,11 +50,11 @@ const CustomizedTick = (props: any) => {
 
 const PriceStatistics = () => {
   return (
-    <ComponentModal title="Price Statistics" width={382} height={244} seeMore>
+    <ComponentModal title="Price Statistics" width={382} seeMore>
       <div className={styles.container}>
         <BarChart
           width={422}
-          height={154}
+          height={134}
           data={data}
           margin={{
             top: 20,
@@ -101,6 +102,11 @@ const PriceStatistics = () => {
             </div>
           </p>
           <p>12pm</p>
+        </div>
+        <div className={styles.container_details}>
+          <BlackBorderedSpace>Passenger Vehicles</BlackBorderedSpace>
+          <BlackBorderedSpace>Pedestrians</BlackBorderedSpace>
+          <BlackBorderedSpace>Micro-Mobility</BlackBorderedSpace>
         </div>
       </div>
     </ComponentModal>
