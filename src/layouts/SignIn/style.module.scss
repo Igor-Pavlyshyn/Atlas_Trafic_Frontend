@@ -11,13 +11,17 @@
     font-family: Inter;
     font-weight: 500;
     margin-right: 28.5rem;
+
+    @media (max-width: 540px) {
+      justify-content: center;
+      margin-right: 0px !important;
+    }
   }
   &_form {
     background: colors.$blue_gradient;
     max-width: 556px;
     max-height: 489px;
-    width: 556px;
-    height: 489px;
+    padding: 40px 90px;
     border-radius: 14px;
     display: flex;
     &_content {

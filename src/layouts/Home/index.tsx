@@ -7,7 +7,6 @@ import TaskSvg from "../../assets/home/Task.svg";
 
 import Scores from "../../components/Scores";
 import Location from "../../components/Location";
-
 import PriceStatistics from "../../components/PriceStatistics";
 import Conversation from "../../components/Conversation";
 import Health from "../../components/Health";
@@ -20,24 +19,6 @@ import TrafficViolation from "../../components/TrafficViolation";
 import Navigation from "../../components/Navigation";
 
 const Home = () => {
-  // const navigate = useNavigate();
-  // const refresh = localStorage.getItem("refresh");
-
-  // const [logout] = useLogoutMutation();
-
-  // const logoutHandler = () => {
-  //   if (refresh) {
-  //     logout({ refresh });
-  //   }
-  //   if (localStorage.getItem("access")) {
-  //     localStorage.removeItem("access");
-  //   }
-  //   if (localStorage.getItem("refresh")) {
-  //     localStorage.removeItem("refresh");
-  //   }
-  //   return navigate("/signIn");
-  // };
-
   return (
     <section className={styles.other_content}>
       <div className={styles.container}>

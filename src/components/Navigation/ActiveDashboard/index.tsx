@@ -61,33 +61,39 @@ const ActiveDashboard = () => {
   return (
     <ComponentModal>
       <div className={styles.container}>
-        <div>
-          Control <br /> Dashboard
+        <div className={styles.container_block}>
+          <div>
+            Control <br /> Dashboard
+          </div>
+          <div className={styles.container_title}>Active Hardware</div>
+          <div className={styles.container_buttons}>
+            {MOCKED_DATA1.map((item, index) => (
+              <GradientButton height={24} key={index}>
+                {item.text}
+              </GradientButton>
+            ))}
+          </div>
         </div>
-        <div className={styles.container_title}>Active Hardware</div>
-        <div className={styles.container_buttons}>
-          {MOCKED_DATA1.map((item, index) => (
-            <GradientButton height={24} key={index}>
-              {item.text}
-            </GradientButton>
-          ))}
+        <div className={styles.container_block}>
+          <div className={styles.container_title}>Active Software</div>
+          <div className={styles.container_buttons}>
+            {MOCKED_DATA2.map((item, index) => (
+              <GradientButton height={24} key={index}>
+                {item.text}
+              </GradientButton>
+            ))}
+          </div>
         </div>
-        <div className={styles.container_title}>Active Software</div>
-        <div className={styles.container_buttons}>
-          {MOCKED_DATA2.map((item, index) => (
-            <GradientButton height={24} key={index}>
-              {item.text}
-            </GradientButton>
-          ))}
+        <div className={styles.container_block}>
+          <div className={styles.container_title}>Inactive Software</div>
+          <GradientButton height={24} width={152}>
+            None
+          </GradientButton>
+          <div className={styles.container_title}>Inactive Software</div>
+          <GradientButton height={24} width={152}>
+            Coming Soon
+          </GradientButton>
         </div>
-        <div className={styles.container_title}>Inactive Software</div>
-        <GradientButton height={24} width={152}>
-          None
-        </GradientButton>
-        <div className={styles.container_title}>Inactive Software</div>
-        <GradientButton height={24} width={152}>
-          Coming Soon
-        </GradientButton>
       </div>
     </ComponentModal>
   );

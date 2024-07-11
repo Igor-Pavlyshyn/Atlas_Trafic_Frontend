@@ -37,7 +37,7 @@ const SignUpThird = () => {
       if (tokens.refresh) {
         localStorage.setItem("refresh", tokens?.refresh);
       }
-      return navigate("/");
+      return navigate("/", { replace: true });
     }
   }, [isSuccess, email]);
 

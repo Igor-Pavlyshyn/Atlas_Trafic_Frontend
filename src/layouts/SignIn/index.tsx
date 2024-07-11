@@ -15,7 +15,7 @@ const SignIn = () => {
 
   const {
     control,
-
+    formState: { errors },
     handleSubmit,
   } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = (data) => {
@@ -33,10 +33,6 @@ const SignIn = () => {
         >
           <div className={styles.container_form_content_item}>
             <label>Email</label>
-            {/* <input
-              {...register("email")}
-              onChange={(event: any) => setEmail(event?.target.value)}
-            /> */}
             <Controller
               name="email"
               control={control}
@@ -49,9 +45,9 @@ const SignIn = () => {
               }}
               render={({ field }) => <input {...field} />}
             />
-            {/* {errors.email && (
+            {errors.email && (
               <span style={{ color: "red" }}>{errors.email.message}</span>
-              )} */}
+            )}
           </div>
           <div className={styles.container_form_content_item}>
             <label>Password</label>

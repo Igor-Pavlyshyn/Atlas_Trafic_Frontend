@@ -17,7 +17,12 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
 
-  const { control, register, handleSubmit } = useForm<IFormInput>();
+  const {
+    control,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = ({
     confirmPassword,
     password,
@@ -29,6 +34,8 @@ const SignUp = () => {
     dispatch(loginActions.addFirstStepInfo({ email, password }));
     navigate("/signUp/security");
   };
+
+  const password = watch("password");
 
   return (
     <div className={styles.container}>
@@ -53,11 +60,16 @@ const SignUp = () => {
                   ) {
                     return true;
                   }
-                  return "Full Name must consist of two words, each starting with an uppercase letter";
+                  return "Two words, each starting with an uppercase letter";
                 },
               }}
               render={({ field }) => <input {...field} />}
             />
+            {errors.name && (
+              <span style={{ color: "red", textWrap: "wrap" }}>
+                {errors.name.message}
+              </span>
+            )}
           </div>
           <div className={styles.container_form_content_item}>
             <label>Email</label>
@@ -73,17 +85,48 @@ const SignUp = () => {
               }}
               render={({ field }) => <input {...field} />}
             />
-            {/* {errors.email && (
+            {errors.email && (
               <span style={{ color: "red" }}>{errors.email.message}</span>
-              )} */}
+            )}
           </div>
           <div className={styles.container_form_content_item}>
             <label>Password</label>
-            <input {...register("password")} type="password" />
+            {/* <input {...register("password")} type="password" /> */}
+            <Controller
+              name="password"
+              control={control}
+              rules={{
+                required: "Required",
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                  message: "6 characters, 1 upppercase and 1 number",
+                },
+              }}
+              render={({ field }) => <input type="password" {...field} />}
+            />
+            {errors.password && (
+              <span style={{ color: "red" }}>{errors.password.message}</span>
+            )}
           </div>
           <div className={styles.container_form_content_item}>
             <label>Confirm Password</label>
-            <input {...register("confirmPassword")} type="password" />
+            {/* <input {...register("confirmPassword")} type="password" /> */}
+            <Controller
+              name="confirmPassword"
+              control={control}
+              rules={{
+                required: "Required",
+                validate: (value) => {
+                  return value === password || "Passwords do not match";
+                },
+              }}
+              render={({ field }) => <input type="password" {...field} />}
+            />
+            {errors.confirmPassword && (
+              <span style={{ color: "red" }}>
+                {errors.confirmPassword.message}
+              </span>
+            )}
           </div>
           <button type="submit">Next</button>
           <span>

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./style.module.scss";
-import Arrow from "../../../assets/Arrow.svg";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducersType } from "../../../redux/store";
@@ -46,7 +46,7 @@ const SignUpSecond = () => {
       localStorage.setItem("access", data?.access);
       localStorage.setItem("refresh", data?.refresh);
       dispatch(loginActions.anullateState());
-      return navigate("/");
+      return navigate("/", { replace: true });
     }
     if (isSuccess && !data?.access) {
       navigate("/signIn/verify-login");
@@ -65,7 +65,6 @@ const SignUpSecond = () => {
             <h1>Question 1</h1>
             <div className={styles.container_form_content_item_text}>
               <label>What was your favorite dish as a child?</label>
-              <img src={Arrow} alt="Arrow" />
             </div>
             <input
               placeholder="Answer 1"
@@ -77,7 +76,6 @@ const SignUpSecond = () => {
             <h1>Question 2</h1>
             <div className={styles.container_form_content_item_text}>
               <label>What was the name of your first pet?</label>
-              <img src={Arrow} alt="Arrow" />
             </div>
             <input
               placeholder="Answer 2"
@@ -89,7 +87,6 @@ const SignUpSecond = () => {
             <h1>Question 3</h1>
             <div className={styles.container_form_content_item_text}>
               <label>What was your favorite subject in school?</label>
-              <img src={Arrow} alt="Arrow" />
             </div>
             <input
               placeholder="Answer 3"
