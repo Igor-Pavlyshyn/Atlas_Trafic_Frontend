@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducersType } from "../../../redux/store";
 import { loginActions } from "../../../redux/slices/loginSlice";
 import { GradientButton } from "../../../components/GradientButton";
+import { ClockLoader } from "react-spinners";
 
 const SignUpThird = () => {
   const [otp, setOtp] = useState<string | undefined>();
@@ -17,7 +18,10 @@ const SignUpThird = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [verifyOtp, { data: tokens, isSuccess }] = useAuthMutation();
+  const [
+    verifyOtp,
+    { data: tokens, isSuccess, isLoading, error, isError },
+  ]: any = useAuthMutation();
 
   const [resendOtp] = useAuthMutation();
 
@@ -85,13 +89,24 @@ const SignUpThird = () => {
               containerStyle={{ gap: "20px" }}
               renderInput={(props) => <input {...props} />}
             />
+            {isError && (
+              <span style={{ color: "red" }}>
+                {error?.data?.otp?.map((item: string) => (
+                  <>{item}</>
+                ))}
+              </span>
+            )}
           </div>
           <div className={styles.container_form_content_resend}>
             Don’t see a code?{" "}
             <span onClick={resendHandler}>Resend to email</span>
           </div>
-          <GradientButton type="submit" onClick={verifyHandler}>
-            Verify email
+          <GradientButton
+            disabled={isLoading}
+            type="submit"
+            onClick={verifyHandler}
+          >
+            Verify email {isLoading && <ClockLoader color="white" size={30} />}
           </GradientButton>
         </div>
       </section>

@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 import BackArrow from "../../../assets/BackArrow.svg";
 import { ReducersType } from "../../../redux/store";
+import { ClockLoader } from "react-spinners";
 
 interface IFormInput {
   password: string;
@@ -20,9 +21,15 @@ const ConfirmForgotPassword = () => {
   const { email, otp } = useSelector(
     (state: ReducersType) => state.reducers.loginReducer
   );
-  const [resetPassword, { error, isError, isSuccess }]: any = useAuthMutation();
+  const [resetPassword, { error, isError, isSuccess, isLoading }]: any =
+    useAuthMutation();
 
-  const { control, handleSubmit } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = ({
     password,
     confirm_password,
@@ -44,12 +51,14 @@ const ConfirmForgotPassword = () => {
       navigate("/signIn/forgot-password");
     }
     if (isError) {
-      alert(error?.data?.detail);
+      alert(error?.data?.otp[0]);
     }
     if (isSuccess) {
       navigate("/signIn");
     }
   }, [isSuccess, isError, email, otp]);
+
+  const password = watch("password");
 
   return (
     <div className={styles.container}>
@@ -66,9 +75,16 @@ const ConfirmForgotPassword = () => {
               control={control}
               rules={{
                 required: "Required",
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                  message: "6 characters, 1 upppercase and 1 number",
+                },
               }}
-              render={({ field }) => <input {...field} />}
+              render={({ field }) => <input type="password" {...field} />}
             />
+            {errors.password && (
+              <span style={{ color: "red" }}>{errors.password.message}</span>
+            )}
             <p>
               Password must contain at least 6 characters, including 1 uppercase
               letter, 1 lowercase letter, 1 <br /> number, and 1 special
@@ -82,11 +98,22 @@ const ConfirmForgotPassword = () => {
               control={control}
               rules={{
                 required: "Required",
+                validate: (value) => {
+                  return value === password || "Passwords do not match";
+                },
               }}
-              render={({ field }) => <input {...field} />}
+              render={({ field }) => <input type="password" {...field} />}
             />
+            {errors.confirm_password && (
+              <span style={{ color: "red" }}>
+                {errors.confirm_password.message}
+              </span>
+            )}
           </div>
-          <button type="submit">Reset password</button>
+          <button disabled={isLoading} type="submit">
+            Reset password{" "}
+            {isLoading && <ClockLoader color="white" size={30} />}
+          </button>
         </form>
       </section>
       <Link to="/signIn" className={styles.container_back_arrow}>

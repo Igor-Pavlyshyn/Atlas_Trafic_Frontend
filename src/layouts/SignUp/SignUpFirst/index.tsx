@@ -91,7 +91,6 @@ const SignUp = () => {
           </div>
           <div className={styles.container_form_content_item}>
             <label>Password</label>
-            {/* <input {...register("password")} type="password" /> */}
             <Controller
               name="password"
               control={control}

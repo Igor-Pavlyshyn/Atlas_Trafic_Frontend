@@ -8,6 +8,7 @@ import { ReducersType } from "../../../redux/store";
 import { useAuthMutation } from "../../../redux/api/auth";
 import { loginActions } from "../../../redux/slices/loginSlice";
 import BackArrow from "../../../assets/BackArrow.svg";
+import { ClockLoader } from "react-spinners";
 
 interface IFormInput {
   answer_1: string;
@@ -22,7 +23,7 @@ const SignUpSecond = () => {
     (state: ReducersType) => state.reducers.loginReducer
   );
   const dispatch = useDispatch();
-  const [loginUser, { data, isSuccess, isError, error }]: any =
+  const [loginUser, { data, isSuccess, isError, error, isLoading }]: any =
     useAuthMutation();
 
   const { register, handleSubmit } = useForm<IFormInput>();
@@ -39,6 +40,10 @@ const SignUpSecond = () => {
   };
 
   useEffect(() => {
+    if (!email || !password) {
+      return navigate("/signIn");
+    }
+
     if (isError) {
       return alert(error?.data?.detail);
     }
@@ -94,7 +99,9 @@ const SignUpSecond = () => {
               type="text"
             />
           </div>
-          <button type="submit">Next</button>
+          <button disabled={isLoading} type="submit">
+            Next {isLoading && <ClockLoader color="white" size={30} />}
+          </button>
         </form>
         <Link to="/signIn" className={styles.container_back_arrow}>
           <img src={BackArrow} alt="BackArrow" />

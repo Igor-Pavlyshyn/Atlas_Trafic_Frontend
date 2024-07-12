@@ -79,6 +79,11 @@
         }
       }
       & button {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        align-items: center;
+
         background: colors.$pink_gradient;
         height: 44px;
         border-radius: 8px;
@@ -89,6 +94,10 @@
         border: none;
         margin-top: 32px;
         cursor: pointer;
+
+        &:disabled {
+          opacity: 0.4;
+        }
       }
       & span {
         font-size: 16px;

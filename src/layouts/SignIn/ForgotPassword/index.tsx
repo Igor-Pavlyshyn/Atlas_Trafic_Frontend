@@ -8,13 +8,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginActions } from "../../../redux/slices/loginSlice";
 import BackArrow from "../../../assets/BackArrow.svg";
+import { ClockLoader } from "react-spinners";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const { control, handleSubmit } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = ({ email }) => {
     dispatch(loginActions.addFirstStepInfo({ email, password: null }));
     sendOtp({
@@ -25,12 +30,10 @@ const ForgotPassword = () => {
       },
     });
   };
-  const [sendOtp, { error, isSuccess, isError }]: any = useAuthMutation();
+  const [sendOtp, { error, isSuccess, isError, isLoading }]: any =
+    useAuthMutation();
 
   useEffect(() => {
-    if (isError) {
-      alert(error?.data?.detail);
-    }
     if (isSuccess) {
       navigate("/signIn/verify");
     }
@@ -64,8 +67,23 @@ const ForgotPassword = () => {
                 <input placeholder="name@gmail.com" {...field} />
               )}
             />
+            {errors.email && (
+              <span style={{ fontSize: "12px", color: "red" }}>
+                {errors.email.message}
+              </span>
+            )}
+            {isError && (
+              <span style={{ fontSize: "12px", color: "red" }}>
+                {error.data.email.map((item: string) => (
+                  <>{item}</>
+                ))}
+              </span>
+            )}
           </div>
-          <button type="submit">Send reset link</button>
+          <button disabled={isLoading} type="submit">
+            Send reset link
+            {isLoading && <ClockLoader color="white" size={30} />}
+          </button>
         </form>
       </section>
       <Link to="/signIn" className={styles.container_back_arrow}>

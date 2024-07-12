@@ -38,10 +38,6 @@ const SignIn = () => {
               control={control}
               rules={{
                 required: "Required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Invalid email format",
-                },
               }}
               render={({ field }) => <input {...field} />}
             />
@@ -63,6 +59,9 @@ const SignIn = () => {
               }}
               render={({ field }) => <input type="password" {...field} />}
             />
+            {errors.password && (
+              <span style={{ color: "red" }}>{errors.password.message}</span>
+            )}
             <p onClick={() => navigate("/signIn/forgot-password")}>
               Forgot password?
             </p>

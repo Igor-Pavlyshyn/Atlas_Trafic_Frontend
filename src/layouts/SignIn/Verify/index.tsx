@@ -13,6 +13,7 @@ import { GradientButton } from "../../../components/GradientButton";
 const SignUpThird = () => {
   const [otp, setOtp] = useState<string | undefined>();
   const [availableResend, setAvailableResend] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const SignUpThird = () => {
   }, [email]);
 
   const verifyHandler = () => {
+    if (!otp || otp.length < 6) {
+      return setError("Otp should have 6 characters");
+    }
+
     dispatch(loginActions.addFirstStepInfo({ otp }));
     navigate("/signIn/confirm-forgot-password");
   };
@@ -47,6 +52,11 @@ const SignUpThird = () => {
     setTimeout(() => setAvailableResend(true), 120000);
   };
 
+  const changeOtpHandler = (event: string) => {
+    setError("");
+    setOtp(event);
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.container_title}>Verify your email</h1>
@@ -62,11 +72,12 @@ const SignUpThird = () => {
             <label>Code:</label>
             <OTPInput
               value={otp}
-              onChange={setOtp}
+              onChange={changeOtpHandler}
               numInputs={6}
               containerStyle={{ gap: "20px" }}
               renderInput={(props) => <input {...props} />}
             />
+            {error && <span style={{ color: "red" }}>{error}</span>}
           </div>
           <div className={styles.container_form_content_resend}>
             Don’t see a code?{" "}

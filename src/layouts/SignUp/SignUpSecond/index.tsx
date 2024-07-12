@@ -25,7 +25,11 @@ const SignUpSecond = () => {
   const [loginUser, { data, isSuccess, isError, error }]: any =
     useAuthMutation();
 
-  const { handleSubmit, control } = useForm<IFormInput>();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSumbit: SubmitHandler<IFormInput> = (data) => {
     loginUser({
       url: "register/",
@@ -39,8 +43,12 @@ const SignUpSecond = () => {
   };
 
   useEffect(() => {
+    if (!email || !password) {
+      return navigate("/signUp");
+    }
+
     if (isError) {
-      return alert(error?.data?.detail);
+      return alert(error?.data?.email.map((item: string) => <>{item}</>));
     }
     if (isSuccess && !data?.access) {
       dispatch(loginActions.anullateState());
@@ -60,7 +68,6 @@ const SignUpSecond = () => {
             <h1>Question 1</h1>
             <div className={styles.container_form_content_item_text}>
               <label>What was your favorite dish as a child?</label>
-              <img src={Arrow} alt="Arrow" />
             </div>
             <Controller
               name="answer_1"
@@ -69,17 +76,19 @@ const SignUpSecond = () => {
                 required: "Required",
                 pattern: {
                   value: /^.{3,}$/,
-                  message: "Invalid email format",
+                  message: "Minimum 3 characters",
                 },
               }}
               render={({ field }) => <input {...field} />}
             />
+            {errors.answer_1 && (
+              <span style={{ color: "red" }}>{errors.answer_1.message}</span>
+            )}
           </div>
           <div className={styles.container_form_content_item}>
             <h1>Question 2</h1>
             <div className={styles.container_form_content_item_text}>
               <label>What was the name of your first pet?</label>
-              <img src={Arrow} alt="Arrow" />
             </div>
             <Controller
               name="answer_2"
@@ -88,17 +97,19 @@ const SignUpSecond = () => {
                 required: "Required",
                 pattern: {
                   value: /^.{3,}$/,
-                  message: "Invalid email format",
+                  message: "Minimum 3 characters",
                 },
               }}
               render={({ field }) => <input {...field} />}
             />
+            {errors.answer_2 && (
+              <span style={{ color: "red" }}>{errors.answer_2.message}</span>
+            )}
           </div>
           <div className={styles.container_form_content_item}>
             <h1>Question 3</h1>
             <div className={styles.container_form_content_item_text}>
               <label>What was your favorite subject in school?</label>
-              <img src={Arrow} alt="Arrow" />
             </div>
             <Controller
               name="answer_3"
@@ -107,11 +118,14 @@ const SignUpSecond = () => {
                 required: "Required",
                 pattern: {
                   value: /^.{3,}$/,
-                  message: "Invalid email format",
+                  message: "Minimum 3 characters",
                 },
               }}
               render={({ field }) => <input {...field} />}
             />
+            {errors.answer_3 && (
+              <span style={{ color: "red" }}>{errors.answer_3.message}</span>
+            )}
           </div>
           <button type="submit">Next</button>
         </form>
