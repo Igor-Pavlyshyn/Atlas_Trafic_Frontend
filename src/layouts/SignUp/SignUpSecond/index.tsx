@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import styles from "./style.module.scss";
-import Arrow from "../../../assets/Arrow.svg";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducersType } from "../../../redux/store";
