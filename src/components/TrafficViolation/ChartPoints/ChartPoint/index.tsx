@@ -9,7 +9,7 @@ type Props = {
 
 const ChartPoint = ({ text, notifications }: Props) => {
   return (
-    <BlackBorderedSpace width={107} height={7}>
+    <BlackBorderedSpace width={98} height={7}>
       <div className={styles.container}>
         <div className={styles.container_text}>{text}</div>
         <div className={styles.container_notifications}>{notifications}</div>

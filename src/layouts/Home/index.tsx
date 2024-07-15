@@ -43,6 +43,7 @@ const Home = () => {
               Assign Emergency Services
             </BlueButton>
           </div>
+          {/* <CameraView /> */}
           <PriceStatistics />
         </div>
         <div className={styles.container_middle}>

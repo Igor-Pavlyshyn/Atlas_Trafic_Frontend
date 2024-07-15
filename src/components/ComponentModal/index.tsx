@@ -18,11 +18,12 @@ interface Props extends StyledProps {
 }
 
 const StyledSection = styled.section<StyledProps>`
-  max-width: ${(props) =>
-    props.width ? `${props.width}px` : "fit-content"} !important;
+  /* max-width: ${(props) =>
+    props.width ? `${props.width}px` : "fit-content"} !important; */
   max-height: ${(props) => props.height && `${props.height}px`};
-  width: ${(props) =>
-    props.width ? `${props.width}px` : "fit-content"} !important;
+  /* width: ${(props) =>
+    props.width ? `${props.width}px` : "fit-content"} !important; */
+
   height: ${(props) => props.height && `${props.height}px`};
   padding: ${(props) => (props.padding ? "0px 16px 0px 16px" : "0px")};
 `;

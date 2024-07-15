@@ -1,10 +1,10 @@
-import ColorfulChart from "./ColorfulChart";
 import ComponentModal from "../ComponentModal";
 import ChartPoints from "./ChartPoints";
 import BackArrow from "../../assets/Pink_arrow.svg";
 
 import styles from "./style.module.scss";
 import Cameras from "./Cameras";
+import SecondTrafficChart from "./SecondTrafficChart";
 
 const TrafficViolation = () => {
   const scrollLeft = () => {
@@ -25,7 +25,7 @@ const TrafficViolation = () => {
     <ComponentModal title="Real Time Traffic Violation and Crime" width={298}>
       <div className={styles.container}>
         <div className={styles.container_chart}>
-          <ColorfulChart />
+          <SecondTrafficChart />
           <ChartPoints />
         </div>
         <div className={styles.container_arrows}>

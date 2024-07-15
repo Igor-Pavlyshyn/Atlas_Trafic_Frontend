@@ -1,58 +1,60 @@
 import ComponentModal from "../ComponentModal";
-import { BarChart, Bar, XAxis, YAxis } from "recharts";
+// import { BarChart, Bar, XAxis, YAxis } from "recharts";
 import Arrow from "../../assets/Pink_arrow.svg";
 
 import styles from "./style.module.scss";
 import { BlackBorderedSpace } from "../BlackBorderedSpace";
+import SecondChart from "./SecondChart";
 
-const data = [
-  { time: "|", uv: 0.5 },
-  { time: "2", uv: 1.5 },
-  { time: "|", uv: 1.2 },
-  { time: "4", uv: 2.3 },
-  { time: "|", uv: 1.8 },
-  { time: "6", uv: 3.5 },
-  { time: "|", uv: 2.0 },
-  { time: "8", uv: 1.6 },
-  { time: "|", uv: 2.1 },
-  { time: "10", uv: 1.4 },
-  { time: "|", uv: 1.0 },
-];
+// const data = [
+//   { time: "|", uv: 0.5 },
+//   { time: "2", uv: 1.5 },
+//   { time: "|", uv: 1.2 },
+//   { time: "4", uv: 2.3 },
+//   { time: "|", uv: 1.8 },
+//   { time: "6", uv: 3.5 },
+//   { time: "|", uv: 2.0 },
+//   { time: "8", uv: 1.6 },
+//   { time: "|", uv: 2.1 },
+//   { time: "10", uv: 1.4 },
+//   { time: "|", uv: 1.0 },
+// ];
 
-const CustomizedLabel = (props: any) => {
-  const { x, y, width, value } = props;
-  const radius = 10;
-  return (
-    <g>
-      <text
-        x={x + width / 2}
-        y={y - radius}
-        fill="#FF66CC"
-        textAnchor="middle"
-        dominantBaseline="middle"
-      >
-        {value == "3.5" && `$${value}`}
-      </text>
-    </g>
-  );
-};
+// const CustomizedLabel = (props: any) => {
+//   const { x, y, width, value } = props;
+//   const radius = 10;
+//   return (
+//     <g>
+//       <text
+//         x={x + width / 2}
+//         y={y - radius}
+//         fill="#FF66CC"
+//         textAnchor="middle"
+//         dominantBaseline="middle"
+//       >
+//         {value == "3.5" && `$${value}`}
+//       </text>
+//     </g>
+//   );
+// };
 
-const CustomizedTick = (props: any) => {
-  const { x, y, payload } = props;
-  return (
-    <g transform={`translate(${x},${y})`}>
-      <text x={0} y={0} dy={16} textAnchor="center" fill="white">
-        {payload.value}
-      </text>
-    </g>
-  );
-};
+// const CustomizedTick = (props: any) => {
+//   const { x, y, payload } = props;
+//   return (
+//     <g transform={`translate(${x},${y})`}>
+//       <text x={0} y={0} dy={16} textAnchor="center" fill="white">
+//         {payload.value}
+//       </text>
+//     </g>
+//   );
+// };
 
 const PriceStatistics = () => {
   return (
     <ComponentModal title="Price Statistics" width={382} seeMore>
       <div className={styles.container}>
-        <BarChart
+        <SecondChart />
+        {/* <BarChart
           width={422}
           height={134}
           data={data}
@@ -68,10 +70,10 @@ const PriceStatistics = () => {
             tick={{
               fill: "white",
             }}
-            // tick={<CustomizedTick />}
+            tick={<CustomizedTick />}
           />
 
-          {/* <Tooltip /> */}
+          <Tooltip />
           <Bar
             label={<CustomizedLabel />}
             dataKey="uv"
@@ -90,7 +92,7 @@ const PriceStatistics = () => {
               );
             }}
           />
-        </BarChart>
+        </BarChart> */}
         <div className={styles.container_hours}>
           <p>12am</p>
           <p>

@@ -15,12 +15,7 @@ const Location = () => {
   // const [isLive, setIsLive] = useState<boolean>(true);
 
   return (
-    <ComponentModal
-      title="Selected Location"
-      svg={LocationSvg}
-      width={210}
-      height={230}
-    >
+    <ComponentModal title="Selected Location" svg={LocationSvg} height={230}>
       <div className={styles.container}>
         <p>
           Intersection ID : <div>{MOCKED_DATA.id}</div>
