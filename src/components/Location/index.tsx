@@ -3,16 +3,29 @@ import Circle from "../../assets/Green_circle.svg";
 import LocationSvg from "../../assets/location.svg";
 
 import styles from "./style.module.scss";
-
-const MOCKED_DATA = {
-  id: 1234,
-  lat: 48.8588443,
-  lng: 2.2943506,
-  live: true,
-};
+import { useScoresQuery } from "../../redux/api/home";
+import { useLayoutEffect, useState } from "react";
 
 const Location = () => {
-  // const [isLive, setIsLive] = useState<boolean>(true);
+  const [id, setId] = useState<null | string>(null);
+
+  const { data, isLoading } = useScoresQuery(`${id}`, { skip: !id });
+
+  useLayoutEffect(() => {
+    const handlePopState = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const id = searchParams.get("id");
+      setId(id);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    handlePopState();
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   return (
     <ComponentModal
@@ -20,32 +33,35 @@ const Location = () => {
       svg={LocationSvg}
       width={210}
       height={230}
+      isLoading={isLoading}
     >
-      <div className={styles.container}>
-        <p>
-          Intersection ID : <div>{MOCKED_DATA.id}</div>
-        </p>
-        <p>
-          Coordinates:
-          <div>
-            {MOCKED_DATA.lat}, {MOCKED_DATA.lng}
-          </div>
-        </p>
-        <p>
-          Condition:
-          <div className={styles.container_live}>
-            {MOCKED_DATA.live ? (
-              <span>
-                <img src={Circle} alt="green" /> <span>Live</span>
-              </span>
-            ) : (
-              <span>
-                <img src={Circle} alt="green" /> <span>Not live</span>
-              </span>
-            )}
-          </div>
-        </p>
-      </div>
+      {!data ? (
+        "Pick a point"
+      ) : (
+        <div className={styles.container}>
+          <p>
+            Intersection ID : <div>{data?.intersection_id}</div>
+          </p>
+          <p>
+            Coordinates:
+            <div>{data?.coordinates}</div>
+          </p>
+          <p>
+            Condition:
+            <div className={styles.container_live}>
+              {data?.condition ? (
+                <span>
+                  <img src={Circle} alt="green" /> <span>Live</span>
+                </span>
+              ) : (
+                <span>
+                  <img src={Circle} alt="green" /> <span>Not live</span>
+                </span>
+              )}
+            </div>
+          </p>
+        </div>
+      )}
     </ComponentModal>
   );
 };

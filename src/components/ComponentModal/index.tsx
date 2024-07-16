@@ -15,6 +15,7 @@ interface Props extends StyledProps {
   title?: string;
   seeMore?: boolean;
   svg?: string | false;
+  isLoading?: boolean;
 }
 
 const StyledSection = styled.section<StyledProps>`
@@ -40,6 +41,7 @@ const ComponentModal = ({
   svg = false,
   padding = true,
   paddingTop = false,
+  isLoading = false,
 }: Props) => {
   return (
     <StyledSection
@@ -66,7 +68,8 @@ const ComponentModal = ({
           )}
         </HeaderDiv>
       )}
-      {children}
+      {isLoading && <>Loading</>}
+      {!isLoading && children}
     </StyledSection>
   );
 };
