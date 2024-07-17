@@ -22,7 +22,7 @@ const TrafficViolation = () => {
   };
 
   return (
-    <ComponentModal title="Real Time Traffic Violation and Crime" width={298}>
+    <ComponentModal title="Real Time Traffic Violation and Crime">
       <div className={styles.container}>
         <div className={styles.container_chart}>
           <SecondTrafficChart />

@@ -5,46 +5,23 @@ import { GradientButton } from "../../GradientButton";
 import styles from "./style.module.scss";
 import { useLogoutMutation } from "../../../redux/api/auth";
 
-type TYPE_DATA = {
-  text: string;
-}[];
-
-const MOCKED_DATA: TYPE_DATA = [
-  {
-    text: "Clock In",
-  },
-  {
-    text: "Update All Software",
-  },
-  {
-    text: "Smart Control Settings",
-  },
-  {
-    text: "Logout",
-  },
-];
-
 const UserDashboard = () => {
   const navigate = useNavigate();
   const refresh = localStorage.getItem("refresh");
 
   const [logout] = useLogoutMutation();
 
-  const logoutHandler = (text: string) => {
-    if (text === "Logout") {
-      if (refresh) {
-        logout({ refresh });
-      }
-      if (localStorage.getItem("access")) {
-        localStorage.removeItem("access");
-      }
-      if (localStorage.getItem("refresh")) {
-        localStorage.removeItem("refresh");
-      }
-      return navigate("/signIn");
-    } else {
-      return;
+  const logoutHandler = () => {
+    if (refresh) {
+      logout({ refresh });
     }
+    if (localStorage.getItem("access")) {
+      localStorage.removeItem("access");
+    }
+    if (localStorage.getItem("refresh")) {
+      localStorage.removeItem("refresh");
+    }
+    return navigate("/signIn");
   };
 
   return (
@@ -52,16 +29,18 @@ const UserDashboard = () => {
       <div className={styles.container}>
         <div className={styles.container_title}>User Dashboard</div>
         <div className={styles.container_buttons}>
-          {MOCKED_DATA.map((item, index) => (
-            <GradientButton
-              height={24}
-              key={index}
-              width={152}
-              onClick={() => logoutHandler(item.text)}
-            >
-              {item.text}
-            </GradientButton>
-          ))}
+          <GradientButton height={24} width={152}>
+            Clock In
+          </GradientButton>
+          <GradientButton height={24} width={152}>
+            Update All Software
+          </GradientButton>
+          <GradientButton height={24} width={152}>
+            Smart Control Settings
+          </GradientButton>
+          <GradientButton height={24} width={152} onClick={logoutHandler}>
+            Logout
+          </GradientButton>
         </div>
       </div>
     </ComponentModal>

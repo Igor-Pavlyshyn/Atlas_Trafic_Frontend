@@ -13,7 +13,7 @@ const Scores = () => {
 
   useEffect(() => {
     scoresEvent(`${id}`);
-  }, []);
+  }, [id]);
 
   useLayoutEffect(() => {
     const handlePopState = () => {
@@ -69,7 +69,19 @@ const Scores = () => {
               pink: data?.efficiency_scores?.[0].micro_mobility_wait_time,
             }}
           />
-          <StickChart title="A-" word1="Environmental" word2="Score" />
+          <StickChart
+            title={data.environmental_scores[0].points}
+            word1="Environmental"
+            word2="Score"
+            colors={{
+              red: data?.environmental_scores?.[0].vehicle_emissions,
+              yellow: data?.environmental_scores?.[0].fuel_consumption,
+              green: data?.environmental_scores?.[0].noise_pollution,
+              purple: data?.environmental_scores?.[0].air_quality_index,
+              blue: data?.environmental_scores?.[0].driving_conditions,
+              pink: data?.environmental_scores?.[0].fire_detection,
+            }}
+          />
           <StickChart title="C+" word1="Cost" word2="Score" />
         </div>
       )}

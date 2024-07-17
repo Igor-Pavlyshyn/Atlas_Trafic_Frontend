@@ -17,6 +17,7 @@ import Tools from "../../components/Tools";
 import TrafficViolation from "../../components/TrafficViolation";
 
 import Navigation from "../../components/Navigation";
+import CameraView from "../../components/CameraView";
 
 const Home = () => {
   return (
@@ -43,7 +44,6 @@ const Home = () => {
               Assign Emergency Services
             </BlueButton>
           </div>
-          {/* <CameraView /> */}
           <PriceStatistics />
         </div>
         <div className={styles.container_middle}>
@@ -97,7 +97,10 @@ const Home = () => {
           <Conversation />
         </div> */}
       </div>
-      <Navigation />
+      <div className={styles.other_content_block}>
+        <Navigation />
+        <CameraView />
+      </div>
     </section>
   );
 };

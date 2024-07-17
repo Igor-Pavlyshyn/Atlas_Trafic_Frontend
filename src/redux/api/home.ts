@@ -1,4 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {
+  BaseQueryFn,
+  createApi,
+  FetchArgs,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+} from "@reduxjs/toolkit/query/react";
 
 const baseUrl = process.env.REACT_DEFAULT_API;
 
@@ -33,11 +40,88 @@ interface IResponse {
       intersection: number;
     }
   ];
+  environmental_scores: [
+    {
+      id: number;
+      points: string;
+      vehicle_emissions: number;
+      fuel_consumption: number;
+      noise_pollution: number;
+      air_quality_index: number;
+      driving_conditions: number;
+      fire_detection: number;
+    }
+  ];
 }
+
+const baseQueryWithToken = fetchBaseQuery({
+  baseUrl,
+  prepareHeaders: (headers) => {
+    const token = localStorage.getItem("access");
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+
+    return headers;
+  },
+});
+
+const baseQueryWithReauth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError,
+  {},
+  FetchBaseQueryMeta
+> = async (arg, api, extraOptions) => {
+  let result = await baseQueryWithToken(arg, api, extraOptions);
+
+  if (result.error && result.error.status === 401) {
+    const refreshResult: any = baseQueryWithToken(
+      {
+        url: "user/token/refresh/",
+        method: "POST",
+        body: {
+          refresh: localStorage.getItem("refresh"),
+        },
+      },
+      api,
+      extraOptions
+    );
+    if (refreshResult.data) {
+      localStorage.removeItem("access");
+      localStorage.setItem("access", refreshResult.data);
+
+      result = await baseQueryWithToken(arg, api, extraOptions);
+    } else {
+      console.log("logout");
+
+      localStorage.removeItem("access");
+      localStorage.removeItem("refresh");
+      window.location.href = "/signIn";
+
+      await baseQueryWithToken(
+        {
+          url: "user/logout/",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+          },
+          body: {
+            refresh_token: localStorage.getItem("refresh"),
+          },
+        },
+        api,
+        extraOptions
+      );
+
+      result = await baseQueryWithToken(arg, api, extraOptions);
+    }
+  }
+  return result;
+};
 
 export const homeApi = createApi({
   reducerPath: "homeApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     scores: builder.query<IResponse, string>({
       query: (id) => `app/intersections/${id}/`,
@@ -78,6 +162,15 @@ export const homeApi = createApi({
           is_near_school: true,
           is_school_hours: true,
           micro_mobility_wait_time: 60,
+          vehicle_emissions: 35,
+          fuel_consumption: 45,
+          noise_pollution: 80,
+          air_quality_index: 150,
+          driving_conditions: {
+            visibility: 0.3,
+            weather: "rain",
+          },
+          fire_detection: 1,
         },
       }),
     }),
