@@ -95,25 +95,25 @@ const baseQueryWithReauth: BaseQueryFn<
     } else {
       console.log("logout");
 
-      localStorage.removeItem("access");
-      localStorage.removeItem("refresh");
-      window.location.href = "/signIn";
+      // localStorage.removeItem("access");
+      // localStorage.removeItem("refresh");
+      // window.location.href = "/signIn";
 
-      await baseQueryWithToken(
-        {
-          url: "user/logout/",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
-          },
-          body: {
-            refresh_token: localStorage.getItem("refresh"),
-          },
-        },
-        api,
-        extraOptions
-      );
+      // await baseQueryWithToken(
+      //   {
+      //     url: "user/logout/",
+      //     headers: {
+      //       Authorization: `Bearer ${localStorage.getItem("access")}`,
+      //     },
+      //     body: {
+      //       refresh_token: localStorage.getItem("refresh"),
+      //     },
+      //   },
+      //   api,
+      //   extraOptions
+      // );
 
-      result = await baseQueryWithToken(arg, api, extraOptions);
+      // result = await baseQueryWithToken(arg, api, extraOptions);
     }
   }
   return result;
