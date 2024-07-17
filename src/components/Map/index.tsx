@@ -14,7 +14,7 @@ const Map = () => {
         onClick={() => setQueryHandler("1234")}
         src={CustomMap}
         alt="map"
-        width={"730px"}
+        width={"510px"}
         height={280}
       />
     </section>

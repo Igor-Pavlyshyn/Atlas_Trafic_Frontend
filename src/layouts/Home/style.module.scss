@@ -7,7 +7,7 @@
     gap: 10px;
   }
 
-  @media (max-width: 1630px) {
+  @media (max-width: 1330px) {
     flex-direction: column;
   }
 }
@@ -34,7 +34,7 @@
 
   &_bottom {
     display: flex;
-    justify-content: space-between;
+    gap: 8px;
   }
 }
 
@@ -83,20 +83,3 @@
 //     }
 //   }
 // }
-
-.camera_view {
-  &_first {
-    display: block !important;
-    @media (max-width: 1630px) {
-      display: none !important;
-    }
-  }
-
-  &_second {
-    display: none !important;
-
-    @media (max-width: 1630px) {
-      display: block !important;
-    }
-  }
-}

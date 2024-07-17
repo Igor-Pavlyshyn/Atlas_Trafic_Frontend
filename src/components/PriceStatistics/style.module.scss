@@ -10,6 +10,8 @@
         rotate: (180deg);
       }
     }
+    position: relative;
+    bottom: 20px;
   }
 
   &_details {
@@ -20,5 +22,7 @@
       font-size: 12px;
       font-weight: 600;
     }
+    position: relative;
+    bottom: 28px;
   }
 }

@@ -27,13 +27,13 @@ const Home = () => {
           <div>
             <Scores />
             <div className={styles.container_top_buttons}>
-              <BlueButton width={164} svg={FileSvg}>
+              <BlueButton width={176} svg={FileSvg}>
                 Export reports
               </BlueButton>
-              <BlueButton width={164} svg={TaskSvg}>
+              <BlueButton width={176} svg={TaskSvg}>
                 Assign Task
               </BlueButton>
-              <BlueButton width={136} svg={TaskSvg}>
+              <BlueButton width={152} svg={TaskSvg}>
                 Agenda
               </BlueButton>
             </div>
@@ -44,13 +44,11 @@ const Home = () => {
               Assign Emergency Services
             </BlueButton>
           </div>
-          <div className={styles.camera_view_first}>
-            <CameraView />
-          </div>
           <PriceStatistics />
         </div>
         <div className={styles.container_middle}>
           <Map />
+          <CameraView />
           <Conversation />
         </div>
         <div className={styles.container_bottom}>
@@ -102,9 +100,6 @@ const Home = () => {
       </div>
       <div className={styles.other_content_block}>
         <Navigation />
-        <div className={styles.camera_view_second}>
-          <CameraView />
-        </div>
       </div>
     </section>
   );

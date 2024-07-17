@@ -6,7 +6,7 @@
   font-weight: 600;
   padding: 10px 0px 10px 0px;
 
-  @media (max-width: 1630px) {
+  @media (max-width: 1330px) {
     flex-direction: row;
     align-items: end;
     gap: 10px;
@@ -27,7 +27,7 @@
       flex-direction: column;
       gap: 10px;
 
-      @media (max-width: 1630px) {
+      @media (max-width: 1330px) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;

@@ -34,7 +34,7 @@ const Scores = () => {
   return (
     <ComponentModal
       title="Scores"
-      width={431}
+      width={481}
       height={230}
       isLoading={isLoading}
       seeMore

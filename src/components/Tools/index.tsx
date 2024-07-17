@@ -8,7 +8,7 @@ import History from "./History";
 
 const Tools = () => {
   return (
-    <ComponentModal width={466}>
+    <ComponentModal width={456}>
       <div className={styles.container}>
         <div className={styles.container_title}>Notification Center</div>
         <div className={styles.container_content}>
