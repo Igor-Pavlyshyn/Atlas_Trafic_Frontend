@@ -44,6 +44,9 @@ const Home = () => {
               Assign Emergency Services
             </BlueButton>
           </div>
+          <div className={styles.camera_view_first}>
+            <CameraView />
+          </div>
           <PriceStatistics />
         </div>
         <div className={styles.container_middle}>
@@ -99,7 +102,9 @@ const Home = () => {
       </div>
       <div className={styles.other_content_block}>
         <Navigation />
-        <CameraView />
+        <div className={styles.camera_view_second}>
+          <CameraView />
+        </div>
       </div>
     </section>
   );

@@ -83,3 +83,20 @@
 //     }
 //   }
 // }
+
+.camera_view {
+  &_first {
+    display: block !important;
+    @media (max-width: 1630px) {
+      display: none !important;
+    }
+  }
+
+  &_second {
+    display: none !important;
+
+    @media (max-width: 1630px) {
+      display: block !important;
+    }
+  }
+}
