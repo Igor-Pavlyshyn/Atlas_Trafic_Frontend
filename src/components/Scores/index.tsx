@@ -8,8 +8,10 @@ import { useEffect, useLayoutEffect, useState } from "react";
 const Scores = () => {
   const [id, setId] = useState<string | null>(null);
 
-  const [scoresEvent] = useScoresEventsMutation();
-  const { data, isLoading } = useScoresQuery(`${id}`, { skip: !id });
+  const [scoresEvent, { isSuccess: successEvents }] = useScoresEventsMutation();
+  const { data, isLoading } = useScoresQuery(`${id}`, {
+    skip: !id && !successEvents,
+  });
 
   useEffect(() => {
     if (id) {
