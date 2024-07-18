@@ -76,7 +76,7 @@ const baseQueryWithReauth: BaseQueryFn<
   let result = await baseQueryWithToken(arg, api, extraOptions);
 
   if (result.error && result.error.status === 401) {
-    const refreshResult: any = baseQueryWithToken(
+    const refreshResult: any = await baseQueryWithToken(
       {
         url: "user/token/refresh/",
         method: "POST",
@@ -87,33 +87,31 @@ const baseQueryWithReauth: BaseQueryFn<
       api,
       extraOptions
     );
+
+    console.log("refreshResult", refreshResult);
     if (refreshResult.data) {
       localStorage.removeItem("access");
-      localStorage.setItem("access", refreshResult.data);
+      localStorage.setItem("access", refreshResult.data.access);
 
       result = await baseQueryWithToken(arg, api, extraOptions);
     } else {
-      console.log("logout");
-
-      // localStorage.removeItem("access");
-      // localStorage.removeItem("refresh");
-      // window.location.href = "/signIn";
-
-      // await baseQueryWithToken(
-      //   {
-      //     url: "user/logout/",
-      //     headers: {
-      //       Authorization: `Bearer ${localStorage.getItem("access")}`,
-      //     },
-      //     body: {
-      //       refresh_token: localStorage.getItem("refresh"),
-      //     },
-      //   },
-      //   api,
-      //   extraOptions
-      // );
-
-      // result = await baseQueryWithToken(arg, api, extraOptions);
+      localStorage.removeItem("access");
+      localStorage.removeItem("refresh");
+      window.location.href = "/signIn";
+      await baseQueryWithToken(
+        {
+          url: "user/logout/",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+          },
+          body: {
+            refresh_token: localStorage.getItem("refresh"),
+          },
+        },
+        api,
+        extraOptions
+      );
+      result = await baseQueryWithToken(arg, api, extraOptions);
     }
   }
   return result;

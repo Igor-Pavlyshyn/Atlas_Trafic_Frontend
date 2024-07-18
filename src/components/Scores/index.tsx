@@ -12,7 +12,9 @@ const Scores = () => {
   const { data, isLoading } = useScoresQuery(`${id}`, { skip: !id });
 
   useEffect(() => {
-    scoresEvent(`${id}`);
+    if (id) {
+      scoresEvent(`${id}`);
+    }
   }, [id]);
 
   useLayoutEffect(() => {
