@@ -38,7 +38,7 @@ const Scores = () => {
   return (
     <ComponentModal
       title="Scores"
-      width={481}
+      width={401}
       height={230}
       isLoading={isLoading}
       seeMore
@@ -60,6 +60,7 @@ const Scores = () => {
               pink: data?.safety_scores?.[0].damaged_disabled_vehicle,
             }}
           />
+
           <StickChart
             title={data?.efficiency_scores?.[0].points}
             word1="Efficiency"

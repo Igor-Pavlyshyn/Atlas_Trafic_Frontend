@@ -51,7 +51,7 @@ import SecondChart from "./SecondChart";
 
 const PriceStatistics = () => {
   return (
-    <ComponentModal title="Price Statistics" width={382} height={275} seeMore>
+    <ComponentModal title="Traffic Count" width={327} height={275} seeMore>
       <div className={styles.container}>
         <SecondChart />
         {/* <BarChart

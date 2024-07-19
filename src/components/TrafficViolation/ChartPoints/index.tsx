@@ -15,7 +15,7 @@ const MOCKED_DATA: TYPE_DATA = [
 
 const ChartPoints = () => {
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
       {MOCKED_DATA.map((item, index) => (
         <ChartPoint
           key={index}

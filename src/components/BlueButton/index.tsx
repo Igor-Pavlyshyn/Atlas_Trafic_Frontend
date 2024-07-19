@@ -24,7 +24,7 @@ const BlueStyledButton = styled.button<StyledButtonProps>`
   border: none;
   border-radius: 8px;
 
-  font-size: 12px;
+  font-size: 11px;
   font-family: Inter;
   font-weight: 600;
 

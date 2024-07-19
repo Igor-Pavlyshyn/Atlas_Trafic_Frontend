@@ -27,28 +27,28 @@ const Home = () => {
           <div>
             <Scores />
             <div className={styles.container_top_buttons}>
-              <BlueButton width={176} svg={FileSvg}>
+              <BlueButton width={144} svg={FileSvg}>
                 Export reports
               </BlueButton>
-              <BlueButton width={176} svg={TaskSvg}>
+              <BlueButton width={144} svg={TaskSvg}>
                 Assign Task
               </BlueButton>
-              <BlueButton width={152} svg={TaskSvg}>
+              <BlueButton width={136} svg={TaskSvg}>
                 Agenda
               </BlueButton>
             </div>
           </div>
           <div>
             <Location />
-            <BlueButton width={250} svg={AlarmSvg}>
+            <BlueButton width={204} svg={AlarmSvg}>
               Assign Emergency Services
             </BlueButton>
           </div>
+          <CameraView />
           <PriceStatistics />
         </div>
         <div className={styles.container_middle}>
           <Map />
-          <CameraView />
           <Conversation />
         </div>
         <div className={styles.container_bottom}>

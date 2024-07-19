@@ -27,7 +27,7 @@ const data2 = [
 
 const Health = () => {
   return (
-    <ComponentModal width={282}>
+    <ComponentModal width={350}>
       <div className={styles.container}>
         <div className={styles.container_title}>
           <div>Intersection Health</div>

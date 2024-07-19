@@ -2,12 +2,14 @@
   display: flex;
   gap: 8px;
 
+  width: 1300px;
+
   &_block {
     display: flex;
     gap: 10px;
   }
 
-  @media (max-width: 1330px) {
+  @media (max-width: 1600px) {
     flex-direction: column;
   }
 }
@@ -35,6 +37,7 @@
   &_bottom {
     display: flex;
     gap: 8px;
+    // justify-content: space-between;
   }
 }
 

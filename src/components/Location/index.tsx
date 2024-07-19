@@ -31,7 +31,7 @@ const Location = () => {
     <ComponentModal
       title="Selected Location"
       svg={LocationSvg}
-      width={210}
+      width={170}
       height={230}
       isLoading={isLoading}
     >

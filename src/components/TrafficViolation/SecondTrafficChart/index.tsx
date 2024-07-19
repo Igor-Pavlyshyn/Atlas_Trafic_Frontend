@@ -1,7 +1,7 @@
 const Chart = () => {
   return (
     <svg
-      width="193"
+      width="180"
       height="140"
       viewBox="0 0 193 140"
       fill="none"

@@ -28,7 +28,7 @@ const Chart = () => {
 
   return (
     <svg
-      width="377"
+      width="330"
       height="155"
       viewBox="0 0 377 155"
       fill="none"

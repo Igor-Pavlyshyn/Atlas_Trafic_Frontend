@@ -64,7 +64,7 @@ const StickChart = ({ title, word1, word2, colors }: Props) => {
                 cx: 55,
               },
             ]}
-            width={106}
+            width={96}
             height={132}
           />
 
@@ -75,9 +75,7 @@ const StickChart = ({ title, word1, word2, colors }: Props) => {
           />
         </div>
       )}
-
       {colors && <p>{title}</p>}
-
       {colors && (
         <h3
           className={
