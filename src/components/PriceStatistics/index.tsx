@@ -5,6 +5,8 @@ import Arrow from "../../assets/Pink_arrow.svg";
 import styles from "./style.module.scss";
 import { BlackBorderedSpace } from "../BlackBorderedSpace";
 import SecondChart from "./SecondChart";
+import { useCarsEventMutation, useCarsQuery } from "../../redux/api/home";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 // const data = [
 //   { time: "|", uv: 0.5 },
@@ -50,8 +52,46 @@ import SecondChart from "./SecondChart";
 // };
 
 const PriceStatistics = () => {
+  const [id, setId] = useState<string | null>(null);
+
+  const [sendEvent, { isSuccess }] = useCarsEventMutation();
+  const { data, isLoading } = useCarsQuery(
+    { id: "1234", part: 2 },
+    { skip: !id || !isSuccess }
+  );
+
+  useEffect(() => {
+    sendEvent("1234");
+
+    if (!isLoading) {
+      console.log("dataPrice", data);
+    }
+  }, [isLoading]);
+
+  useLayoutEffect(() => {
+    const handlePopState = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const id = searchParams.get("id");
+      setId(id);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    handlePopState();
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
   return (
-    <ComponentModal title="Traffic Count" width={327} height={275} seeMore>
+    <ComponentModal
+      title="Traffic Count"
+      width={327}
+      height={275}
+      isLoading={isLoading}
+      seeMore
+    >
       <div className={styles.container}>
         <SecondChart />
         {/* <BarChart

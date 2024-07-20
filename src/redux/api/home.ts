@@ -6,53 +6,9 @@ import {
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query/react";
+import { IResponseCars, IResponseScores } from "../../utils/apiTypes";
 
 const baseUrl = process.env.REACT_DEFAULT_API;
-
-interface IResponse {
-  id: number;
-  intersection_id: string;
-  coordinates: string;
-  condition: string;
-  safety_scores?: [
-    {
-      id: number;
-      points: string;
-      accident_rate: number;
-      near_misses: number;
-      speeding: number;
-      traffic_violations: number;
-      pedestrian_incidents: number;
-      damaged_disabled_vehicle: number;
-      intersection: number;
-    }
-  ];
-  efficiency_scores: [
-    {
-      id: number;
-      points: string;
-      congestion_level: number;
-      average_traffic_speed: number;
-      traffic_volume: number;
-      signal_timing_efficiency: number;
-      pedestrian_wait_time: number;
-      micro_mobility_wait_time: number;
-      intersection: number;
-    }
-  ];
-  environmental_scores: [
-    {
-      id: number;
-      points: string;
-      vehicle_emissions: number;
-      fuel_consumption: number;
-      noise_pollution: number;
-      air_quality_index: number;
-      driving_conditions: number;
-      fire_detection: number;
-    }
-  ];
-}
 
 const baseQueryWithToken = fetchBaseQuery({
   baseUrl,
@@ -121,7 +77,7 @@ export const homeApi = createApi({
   reducerPath: "homeApi",
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
-    scores: builder.query<IResponse, string>({
+    scores: builder.query<IResponseScores, string>({
       query: (id) => `app/intersections/${id}/`,
     }),
     scoresEvents: builder.mutation<any, string>({
@@ -172,7 +128,28 @@ export const homeApi = createApi({
         },
       }),
     }),
+    carsEvent: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `app/intersections/${id}/cars/`,
+        method: "POST",
+        body: {
+          Passenger_Vehicle: 2,
+          Heavy_Truck: 3,
+          Public_Transportation: 1,
+          Pedestrian: 4,
+          Micromobility_User: 1,
+        },
+      }),
+    }),
+    cars: builder.query<IResponseCars, { id: string; part: number }>({
+      query: ({ id, part }) => `app/intersections/${id}/cars/${part}`,
+    }),
   }),
 });
 
-export const { useScoresQuery, useScoresEventsMutation } = homeApi;
+export const {
+  useScoresQuery,
+  useScoresEventsMutation,
+  useCarsEventMutation,
+  useCarsQuery,
+} = homeApi;
