@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface IPrivateRoute {
+interface IPrivateRoute<T> {
   signComponent?: boolean;
-  component: React.ComponentType<any>;
+  component: React.ComponentType<T>;
 }
 
-export const PrivateRoute = ({
+export const PrivateRoute = <T extends object>({
   component: Component,
   signComponent = false,
   ...rest
-}: IPrivateRoute) => {
+}: IPrivateRoute<T>) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,5 +25,5 @@ export const PrivateRoute = ({
     }
   }, [window.location.pathname]);
 
-  return <Component {...rest} />;
+  return <Component {...(rest as T)} />;
 };

@@ -1,30 +1,41 @@
-const Chart = () => {
+type TypeProps = {
+  bars:
+    | {
+        chart1: number;
+        chart2: number;
+        chart3: number;
+        chart4: number;
+        chart5: number;
+        chart6: number;
+        chart7: number;
+        chart8: number;
+        chart9: number;
+        chart10: number;
+        chart11: number;
+      }
+    | undefined;
+};
+
+const Chart = ({ bars }: TypeProps) => {
+  const barsArray = Object.values(bars!);
+  const maxValue = Math.max(...barsArray);
+  const minValue = Math.min(...barsArray);
+
+  const normalizedArray = barsArray.map(
+    (x) => ((x - minValue) / (maxValue - minValue)) * 100
+  );
+
+  const maxValue2 = Math.max(...normalizedArray);
+  const minValue2 = Math.min(...normalizedArray);
+
+  const invertedValues = normalizedArray.map((value) =>
+    value === 0 ? 160 : maxValue2 - value + minValue2
+  );
+
+  const maxIndex = invertedValues.indexOf(Math.min(...invertedValues));
+
   const topY = 87.5;
   const bottomY = topY + 200;
-
-  const topY1 = 105.5;
-
-  const topY2 = 50;
-
-  const topY3 = 40;
-
-  const topY4 = 90;
-
-  const topY5 = 10;
-
-  const topY6 = 30;
-
-  const topY7 = 84;
-
-  const topY8 = 92;
-
-  const topY9 = 100;
-
-  const topY10 = 130;
-
-  const topY11 = 110;
-
-  // const topY1 = bottomY1 - 100;
 
   return (
     <svg
@@ -61,24 +72,28 @@ const Chart = () => {
         {/* First Bar */}
         <svg y={-20}>
           <path
-            d={`M45 ${topY1}C45 ${topY1 - 0.5523} 45.4477 ${topY1 - 1} 46 ${
-              topY1 - 1
-            }H60C60.5523 ${topY1 - 1} 61 ${
-              topY1 - 0.5523
-            } 61 ${topY1}V${bottomY}H45V${topY1}Z`}
-            fill="#BBA2B8"
+            d={`M45 ${invertedValues[0]}C45 ${
+              invertedValues[0] - 0.5523
+            } 45.4477 ${invertedValues[0] - 1} 46 ${
+              invertedValues[0] - 1
+            }H60C60.5523 ${invertedValues[0] - 1} 61 ${
+              invertedValues[0] - 0.5523
+            } 61 ${invertedValues[0]}V${bottomY}H45V${invertedValues[0]}Z`}
+            fill={`${maxIndex === 0 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <rect x="52" y="139.5" width="2" height="8" fill="#B7BFC2" />
         {/* Second Bar */}
         <svg y={-20}>
           <path
-            d={`M75 ${topY2}C75 ${topY2 - 0.5523} 75.4477 ${topY2 - 1} 76 ${
-              topY2 - 1
-            }H90C90.5523 ${topY2 - 1} 91 ${
-              topY2 - 0.5523
-            } 91 ${topY2}V${bottomY}H75V${topY2}Z`}
-            fill="#BBA2B8"
+            d={`M75 ${invertedValues[1]}C75 ${
+              invertedValues[1] - 0.5523
+            } 75.4477 ${invertedValues[1] - 1} 76 ${
+              invertedValues[1] - 1
+            }H90C90.5523 ${invertedValues[1] - 1} 91 ${
+              invertedValues[1] - 0.5523
+            } 91 ${invertedValues[1]}V${bottomY}H75V${invertedValues[1]}Z`}
+            fill={`${maxIndex === 1 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <path
@@ -88,24 +103,28 @@ const Chart = () => {
         {/* Third Bar */}
         <svg y={-20}>
           <path
-            d={`M105 ${topY3}C105 ${topY3 - 0.5523} 105.448 ${topY3 - 1} 106 ${
-              topY3 - 1
-            }H120C120.552 ${topY3 - 1} 121 ${
-              topY3 - 0.5523
-            } 121 ${topY3}V${bottomY}H105V${topY3}Z`}
-            fill="#BBA2B8"
+            d={`M105 ${invertedValues[2]}C105 ${
+              invertedValues[2] - 0.5523
+            } 105.448 ${invertedValues[2] - 1} 106 ${
+              invertedValues[2] - 1
+            }H120C120.552 ${invertedValues[2] - 1} 121 ${
+              invertedValues[2] - 0.5523
+            } 121 ${invertedValues[2]}V${bottomY}H105V${invertedValues[2]}Z`}
+            fill={`${maxIndex === 2 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <rect x="112" y="139.5" width="2" height="8" fill="#B7BFC2" />
         {/* Fourth Bar */}
         <svg y={-20}>
           <path
-            d={`M135 ${topY4}C135 ${topY4 - 0.5523} 135.448 ${topY4 - 1} 136 ${
-              topY4 - 1
-            }H150C150.552 ${topY4 - 1} 151 ${
-              topY4 - 0.5523
-            } 151 ${topY4}V${bottomY}H135V${topY4}Z`}
-            fill="#BBA2B8"
+            d={`M135 ${invertedValues[3]}C135 ${
+              invertedValues[3] - 0.5523
+            } 135.448 ${invertedValues[3] - 1} 136 ${
+              invertedValues[3] - 1
+            }H150C150.552 ${invertedValues[3] - 1} 151 ${
+              invertedValues[3] - 0.5523
+            } 151 ${invertedValues[3]}V${bottomY}H135V${invertedValues[3]}Z`}
+            fill={`${maxIndex === 3 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <path
@@ -115,12 +134,14 @@ const Chart = () => {
         {/* Fifth Bar */}
         <svg y={-20}>
           <path
-            d={`M165 ${topY5}C165 ${topY5 - 0.5523} 165.448 ${topY5 - 1} 166 ${
-              topY5 - 1
-            }H180C180.552 ${topY5 - 1} 181 ${
-              topY5 - 0.5523
-            } 181 ${topY5}V${bottomY}H165V${topY5}Z`}
-            fill="#BBA2B8"
+            d={`M165 ${invertedValues[4]}C165 ${
+              invertedValues[4] - 0.5523
+            } 165.448 ${invertedValues[4] - 1} 166 ${
+              invertedValues[4] - 1
+            }H180C180.552 ${invertedValues[4] - 1} 181 ${
+              invertedValues[4] - 0.5523
+            } 181 ${invertedValues[4]}V${bottomY}H165V${invertedValues[4]}Z`}
+            fill={`${maxIndex === 4 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <rect x="172" y="139.5" width="2" height="8" fill="#B7BFC2" />
@@ -132,12 +153,14 @@ const Chart = () => {
         /> */}
         <svg y={-20}>
           <path
-            d={`M195 ${topY6}C195 ${topY6 - 0.5523} 195.448 ${topY6 - 1} 196 ${
-              topY6 - 1
-            }H210C210.552 ${topY6 - 1} 211 ${
-              topY6 - 0.5523
-            } 211 ${topY6}V${bottomY}H195V${topY6}Z`}
-            fill="#FF7FC1"
+            d={`M195 ${invertedValues[5]}C195 ${
+              invertedValues[5] - 0.5523
+            } 195.448 ${invertedValues[5] - 1} 196 ${
+              invertedValues[5] - 1
+            }H210C210.552 ${invertedValues[5] - 1} 211 ${
+              invertedValues[5] - 0.5523
+            } 211 ${invertedValues[5]}V${bottomY}H195V${invertedValues[5]}Z`}
+            fill={`${maxIndex === 5 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <path
@@ -147,24 +170,28 @@ const Chart = () => {
         {/* Seven Bar */}
         <svg y={-20}>
           <path
-            d={`M225 ${topY7}C225 ${topY7 - 0.5523} 225.448 ${topY7 - 1} 226 ${
-              topY7 - 1
-            }H240C240.552 ${topY7 - 1} 241 ${
-              topY7 - 0.5523
-            } 241 ${topY7}V${bottomY}H225V${topY7}Z`}
-            fill="#BBA2B8"
+            d={`M225 ${invertedValues[6]}C225 ${
+              invertedValues[6] - 0.5523
+            } 225.448 ${invertedValues[6] - 1} 226 ${
+              invertedValues[6] - 1
+            }H240C240.552 ${invertedValues[6] - 1} 241 ${
+              invertedValues[6] - 0.5523
+            } 241 ${invertedValues[6]}V${bottomY}H225V${invertedValues[6]}Z`}
+            fill={`${maxIndex === 6 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <rect x="232" y="139.5" width="2" height="8" fill="#B7BFC2" />
         {/* Eith Bar */}
         <svg y={-20}>
           <path
-            d={`M255 ${topY8}C255 ${topY8 - 0.5523} 255.448 ${topY8 - 1} 256 ${
-              topY8 - 1
-            }H270C270.552 ${topY8 - 1} 271 ${
-              topY8 - 0.5523
-            } 271 ${topY8}V${bottomY}H255V${topY8}Z`}
-            fill="#BBA2B8"
+            d={`M255 ${invertedValues[7]}C255 ${
+              invertedValues[7] - 0.5523
+            } 255.448 ${invertedValues[7] - 1} 256 ${
+              invertedValues[7] - 1
+            }H270C270.552 ${invertedValues[7] - 1} 271 ${
+              invertedValues[7] - 0.5523
+            } 271 ${invertedValues[7]}V${bottomY}H255V${invertedValues[7]}Z`}
+            fill={`${maxIndex === 7 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <path
@@ -174,24 +201,28 @@ const Chart = () => {
         {/* Nineth Bar */}
         <svg y={-20}>
           <path
-            d={`M285 ${topY9}C285 ${topY9 - 0.5523} 285.448 ${topY9 - 1} 286 ${
-              topY9 - 1
-            }H300C300.552 ${topY9 - 1} 301 ${
-              topY9 - 0.5523
-            } 301 ${topY9}V${bottomY}H285V${topY9}Z`}
-            fill="#BBA2B8"
+            d={`M285 ${invertedValues[8]}C285 ${
+              invertedValues[8] - 0.5523
+            } 285.448 ${invertedValues[8] - 1} 286 ${
+              invertedValues[8] - 1
+            }H300C300.552 ${invertedValues[8] - 1} 301 ${
+              invertedValues[8] - 0.5523
+            } 301 ${invertedValues[8]}V${bottomY}H285V${invertedValues[8]}Z`}
+            fill={`${maxIndex === 8 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <rect x="292" y="139.5" width="2" height="8" fill="#B7BFC2" />
         {/* Tenth Bar */}
         <svg y={-20}>
           <path
-            d={`M315 ${topY10}C315 ${topY10 - 0.5523} 315.448 ${
-              topY10 - 1
-            } 316 ${topY10 - 1}H330C330.552 ${topY10 - 1} 331 ${
-              topY10 - 0.5523
-            } 331 ${topY10}V${bottomY}H315V${topY10}Z`}
-            fill="#BBA2B8"
+            d={`M315 ${invertedValues[9]}C315 ${
+              invertedValues[9] - 0.5523
+            } 315.448 ${invertedValues[9] - 1} 316 ${
+              invertedValues[9] - 1
+            }H330C330.552 ${invertedValues[9] - 1} 331 ${
+              invertedValues[9] - 0.5523
+            } 331 ${invertedValues[9]}V${bottomY}H315V${invertedValues[9]}Z`}
+            fill={`${maxIndex === 9 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <path
@@ -201,12 +232,14 @@ const Chart = () => {
         {/* Eleventh Bar */}
         <svg y={-20}>
           <path
-            d={`M345 ${topY11}C345 ${topY11 - 0.5523} 345.448 ${
-              topY11 - 1
-            } 346 ${topY11 - 1}H360C360.552 ${topY11 - 1} 361 ${
-              topY11 - 0.5523
-            } 361 ${topY11}V${bottomY}H345V${topY11}Z`}
-            fill="#BBA2B8"
+            d={`M345 ${invertedValues[10]}C345 ${
+              invertedValues[10] - 0.5523
+            } 345.448 ${invertedValues[10] - 1} 346 ${
+              invertedValues[10] - 1
+            }H360C360.552 ${invertedValues[10] - 1} 361 ${
+              invertedValues[10] - 0.5523
+            } 361 ${invertedValues[10]}V${bottomY}H345V${invertedValues[10]}Z`}
+            fill={`${maxIndex === 10 ? "#FF7FC1" : "#B7BFC2"}`}
           />
         </svg>
         <rect x="352" y="139.5" width="2" height="8" fill="#B7BFC2" />
@@ -225,8 +258,8 @@ const Chart = () => {
   );
 };
 
-const SecondChart = () => {
-  return <Chart />;
+const SecondChart = ({ bars }: TypeProps) => {
+  return <Chart bars={bars} />;
 };
 
 export default SecondChart;

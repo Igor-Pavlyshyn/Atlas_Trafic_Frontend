@@ -1,13 +1,18 @@
-import Frame from "../../../assets/videos/view_size.mp4";
+import Frame from "../../../assets/videos/view_size_small.mp4";
 
-type Props = {
-  clickHandler: (id: string) => void;
-};
-
-const Video = ({ clickHandler }: Props) => {
+const Video = () => {
   return (
-    <div onClick={() => clickHandler("")}>
-      <video autoPlay playsInline muted loop>
+    <div>
+      <video
+        autoPlay
+        playsInline
+        muted
+        loop
+        style={{
+          borderBottomLeftRadius: "12px",
+          borderBottomRightRadius: "12px",
+        }}
+      >
         <source src={Frame} />
       </video>
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./style.module.scss";
 import Arrow from "../../assets/home/Front_arrow.svg";
 import styled from "styled-components";
+import { ClockLoader } from "react-spinners";
 
 interface StyledProps {
   width?: number;
@@ -68,7 +69,7 @@ const ComponentModal = ({
           )}
         </HeaderDiv>
       )}
-      {isLoading && <>Loading</>}
+      {isLoading && <ClockLoader color="white" size={30} />}
       {!isLoading && children}
     </StyledSection>
   );

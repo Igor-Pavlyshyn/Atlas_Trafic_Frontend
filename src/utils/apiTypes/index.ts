@@ -45,12 +45,17 @@ export interface IResponseScores {
 
 export interface IResponseCars {
   total_cars: number;
-  classifications: {
-    Heavy_Truck: number;
-    Micromobility_User: number;
-    Passenger_Vehicle: number;
-    Pedestrian: number;
-    Public_Transportation: number;
+  hourly_counts: {
+    chart1: number;
+    chart2: number;
+    chart3: number;
+    chart4: number;
+    chart5: number;
+    chart6: number;
+    chart7: number;
+    chart8: number;
+    chart9: number;
+    chart10: number;
+    chart11: number;
   };
-  detected_at: string;
 }

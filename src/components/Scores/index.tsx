@@ -9,9 +9,12 @@ const Scores = () => {
   const [id, setId] = useState<string | null>(null);
 
   const [scoresEvent, { isSuccess: successEvents }] = useScoresEventsMutation();
-  const { data, isLoading } = useScoresQuery(`${id}`, {
-    skip: !id && !successEvents,
-  });
+  const { data, isLoading, isError, error, isFetching }: any = useScoresQuery(
+    `${id}`,
+    {
+      skip: !id && !successEvents,
+    }
+  );
 
   useEffect(() => {
     if (id) {
@@ -22,8 +25,8 @@ const Scores = () => {
   useLayoutEffect(() => {
     const handlePopState = () => {
       const searchParams = new URLSearchParams(window.location.search);
-      const id = searchParams.get("id");
-      setId(id);
+      const newId = searchParams.get("id");
+      setId(newId);
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -40,12 +43,12 @@ const Scores = () => {
       title="Scores"
       width={401}
       height={230}
-      isLoading={isLoading}
+      isLoading={isLoading || isFetching}
       seeMore
     >
-      {!data ? (
-        "Pick a point"
-      ) : (
+      {!id && "Pick a point"}
+      {isError && id && <>{error?.data?.detail}</>}
+      {!isError && !isLoading && id && (
         <div className={styles.container}>
           <StickChart
             title={data?.safety_scores?.[0].points}
@@ -75,7 +78,7 @@ const Scores = () => {
             }}
           />
           <StickChart
-            title={data.environmental_scores[0].points}
+            title={data?.environmental_scores[0].points}
             word1="Environmental"
             word2="Score"
             colors={{

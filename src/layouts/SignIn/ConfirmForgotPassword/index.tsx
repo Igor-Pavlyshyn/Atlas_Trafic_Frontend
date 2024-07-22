@@ -21,7 +21,7 @@ const ConfirmForgotPassword = () => {
   const { email, otp } = useSelector(
     (state: ReducersType) => state.reducers.loginReducer
   );
-  const [resetPassword, { error, isError, isSuccess, isLoading }]: any =
+  const [resetPassword, { error, isError, isSuccess, isLoading }] =
     useAuthMutation();
 
   const {
@@ -51,7 +51,7 @@ const ConfirmForgotPassword = () => {
       navigate("/signIn/forgot-password");
     }
     if (isError) {
-      alert(error?.data?.otp[0]);
+      alert(error);
     }
     if (isSuccess) {
       navigate("/signIn");

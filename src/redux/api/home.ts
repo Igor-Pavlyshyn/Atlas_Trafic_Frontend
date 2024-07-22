@@ -8,6 +8,10 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { IResponseCars, IResponseScores } from "../../utils/apiTypes";
 
+interface IRefreshTokenResponse {
+  access: string;
+}
+
 const baseUrl = process.env.REACT_DEFAULT_API;
 
 const baseQueryWithToken = fetchBaseQuery({
@@ -32,7 +36,7 @@ const baseQueryWithReauth: BaseQueryFn<
   let result = await baseQueryWithToken(arg, api, extraOptions);
 
   if (result.error && result.error.status === 401) {
-    const refreshResult: any = await baseQueryWithToken(
+    const refreshResult = await baseQueryWithToken(
       {
         url: "user/token/refresh/",
         method: "POST",
@@ -44,10 +48,10 @@ const baseQueryWithReauth: BaseQueryFn<
       extraOptions
     );
 
-    console.log("refreshResult", refreshResult);
     if (refreshResult.data) {
+      const refreshData = refreshResult.data as IRefreshTokenResponse;
       localStorage.removeItem("access");
-      localStorage.setItem("access", refreshResult.data.access);
+      localStorage.setItem("access", refreshData.access);
 
       result = await baseQueryWithToken(arg, api, extraOptions);
     } else {
@@ -144,6 +148,9 @@ export const homeApi = createApi({
     cars: builder.query<IResponseCars, { id: string; part: number }>({
       query: ({ id, part }) => `app/intersections/${id}/cars/${part}`,
     }),
+    classifications: builder.query<any, any>({
+      query: ({ id }) => `app/intersections/${id}/classifications/`,
+    }),
   }),
 });
 
@@ -152,4 +159,5 @@ export const {
   useScoresEventsMutation,
   useCarsEventMutation,
   useCarsQuery,
+  useClassificationsQuery,
 } = homeApi;

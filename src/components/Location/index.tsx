@@ -9,7 +9,12 @@ import { useLayoutEffect, useState } from "react";
 const Location = () => {
   const [id, setId] = useState<null | string>(null);
 
-  const { data, isLoading } = useScoresQuery(`${id}`, { skip: !id });
+  const { data, isLoading, isError, error, isFetching }: any = useScoresQuery(
+    `${id}`,
+    {
+      skip: !id,
+    }
+  );
 
   useLayoutEffect(() => {
     const handlePopState = () => {
@@ -33,11 +38,12 @@ const Location = () => {
       svg={LocationSvg}
       width={170}
       height={230}
-      isLoading={isLoading}
+      isLoading={isLoading || isFetching}
     >
-      {!data ? (
-        "Pick a point"
-      ) : (
+      {!id && "Pick a point"}
+      {id && isLoading && "Loading"}
+      {isError && id && <>{error?.data?.detail}</>}
+      {!isError && !isLoading && id && (
         <div className={styles.container}>
           <p>
             Intersection ID : <div>{data?.intersection_id}</div>
