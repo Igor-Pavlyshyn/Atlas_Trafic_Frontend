@@ -9,6 +9,8 @@ interface StyledSpaceProps {
   height?: number;
   paddingTop?: boolean;
   seeMore?: boolean;
+  onClick?: (classificationName: unknown) => void;
+  isActive?: boolean;
 }
 
 interface BlackBorderedSpaceProps extends StyledSpaceProps {
@@ -26,7 +28,8 @@ const BlackStyledBorderedSpace = styled.div<StyledSpaceProps>`
   max-height: ${(props) =>
     props.height ? `${props.height}px` : "fit-content"} !important;
 
-  background-color: ${COLORS.BLACK_1};
+  background-color: ${(props) =>
+    props.isActive ? COLORS.BLACK_HOVER_1 : COLORS.BLACK_1};
   cursor: pointer;
 
   border: 1px solid ${COLORS.DARK_PURPLE};
@@ -48,12 +51,16 @@ export const BlackBorderedSpace = ({
   title,
   paddingTop = false,
   seeMore = false,
+  isActive = false,
+  ...rest
 }: BlackBorderedSpaceProps) => {
   return (
     <BlackStyledBorderedSpace
       height={height}
       width={width}
       paddingTop={paddingTop}
+      isActive={isActive}
+      {...rest}
     >
       {title && (
         <div className={styles.header}>

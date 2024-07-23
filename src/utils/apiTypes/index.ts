@@ -59,3 +59,11 @@ export interface IResponseCars {
     chart11: number;
   };
 }
+
+export interface IRequestClassificationChart {
+  id: number;
+  part: number;
+  classification: string;
+}
+
+export interface IResponseClassificationChart extends IResponseCars {}

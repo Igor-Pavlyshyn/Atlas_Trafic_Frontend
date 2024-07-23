@@ -2,41 +2,18 @@ import ComponentModal from "../ComponentModal";
 
 import styles from "./style.module.scss";
 import StickChart from "../StickChart";
-import { useScoresEventsMutation, useScoresQuery } from "../../redux/api/home";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useScoresQuery } from "../../redux/api/home";
+import { useGetQueryId } from "../../hooks/useGetQueryId";
 
 const Scores = () => {
-  const [id, setId] = useState<string | null>(null);
+  const { id } = useGetQueryId();
 
-  const [scoresEvent, { isSuccess: successEvents }] = useScoresEventsMutation();
   const { data, isLoading, isError, error, isFetching }: any = useScoresQuery(
     `${id}`,
     {
-      skip: !id && !successEvents,
+      skip: !id,
     }
   );
-
-  useEffect(() => {
-    if (id) {
-      scoresEvent(`${id}`);
-    }
-  }, [id]);
-
-  useLayoutEffect(() => {
-    const handlePopState = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const newId = searchParams.get("id");
-      setId(newId);
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    handlePopState();
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
 
   return (
     <ComponentModal

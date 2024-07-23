@@ -4,10 +4,10 @@ import LocationSvg from "../../assets/location.svg";
 
 import styles from "./style.module.scss";
 import { useScoresQuery } from "../../redux/api/home";
-import { useLayoutEffect, useState } from "react";
+import { useGetQueryId } from "../../hooks/useGetQueryId";
 
 const Location = () => {
-  const [id, setId] = useState<null | string>(null);
+  const { id } = useGetQueryId();
 
   const { data, isLoading, isError, error, isFetching }: any = useScoresQuery(
     `${id}`,
@@ -15,22 +15,6 @@ const Location = () => {
       skip: !id,
     }
   );
-
-  useLayoutEffect(() => {
-    const handlePopState = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const id = searchParams.get("id");
-      setId(id);
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    handlePopState();
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
 
   return (
     <ComponentModal

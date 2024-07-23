@@ -6,7 +6,12 @@ import {
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query/react";
-import { IResponseCars, IResponseScores } from "../../utils/apiTypes";
+import {
+  IRequestClassificationChart,
+  IResponseCars,
+  IResponseClassificationChart,
+  IResponseScores,
+} from "../../utils/apiTypes";
 
 interface IRefreshTokenResponse {
   access: string;
@@ -84,80 +89,25 @@ export const homeApi = createApi({
     scores: builder.query<IResponseScores, string>({
       query: (id) => `app/intersections/${id}/`,
     }),
-    scoresEvents: builder.mutation<any, string>({
-      query: (id) => ({
-        url: `app/intersections/${id}/events/`,
-        method: "POST",
-        body: {
-          accident_rate: 1,
-          near_misses: 3,
-          speeding: 5,
-          traffic_violations: {
-            tailgating: 2,
-            red_light_running: 1,
-            distracted_driving: 4,
-            changing_lanes: 3,
-          },
-          pedestrian_incidents: {
-            no_crosswalk_sign: 1,
-            near_miss: 2,
-            aggressive_behavior: 3,
-          },
-          damaged_disabled_vehicle: {
-            stuck_in_lane: 2,
-            broken_down_intersection: 1,
-            broken_down_side: 1,
-          },
-          congestion_level: 55,
-          average_traffic_speed: {
-            avg_speed: 45,
-            min_speed_limit: 50,
-            max_speed_limit: 60,
-          },
-          traffic_volume: 2100,
-          signal_timing_efficiency: 40,
-          pedestrian_wait_time: 40,
-          is_near_school: true,
-          is_school_hours: true,
-          micro_mobility_wait_time: 60,
-          vehicle_emissions: 35,
-          fuel_consumption: 45,
-          noise_pollution: 80,
-          air_quality_index: 150,
-          driving_conditions: {
-            visibility: 0.3,
-            weather: "rain",
-          },
-          fire_detection: 1,
-        },
-      }),
-    }),
-    carsEvent: builder.mutation<any, string>({
-      query: (id) => ({
-        url: `app/intersections/${id}/cars/`,
-        method: "POST",
-        body: {
-          Passenger_Vehicle: 2,
-          Heavy_Truck: 3,
-          Public_Transportation: 1,
-          Pedestrian: 4,
-          Micromobility_User: 1,
-        },
-      }),
-    }),
     cars: builder.query<IResponseCars, { id: string; part: number }>({
       query: ({ id, part }) => `app/intersections/${id}/cars/${part}`,
     }),
-    classifications: builder.query<any, any>({
-      query: ({ id }) => `app/intersections/${id}/classifications/`,
+    classifications: builder.query<string[], number>({
+      query: (id) => `app/intersections/${id}/classifications/`,
+    }),
+    classificationChart: builder.query<
+      IResponseClassificationChart,
+      IRequestClassificationChart
+    >({
+      query: ({ id, part, classification }) =>
+        `app/intersections/${id}/classifications/${classification}/${part}/`,
     }),
   }),
 });
 
 export const {
   useScoresQuery,
-  useScoresEventsMutation,
-  useCarsEventMutation,
   useCarsQuery,
   useClassificationsQuery,
+  useClassificationChartQuery,
 } = homeApi;

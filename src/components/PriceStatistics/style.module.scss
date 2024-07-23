@@ -26,6 +26,11 @@
     overflow-x: auto;
     overflow-y: hidden;
 
+    &_text {
+      position: relative;
+      top: 2px;
+    }
+
     &::-webkit-scrollbar {
       height: 2px !important;
     }

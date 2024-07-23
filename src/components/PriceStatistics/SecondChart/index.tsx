@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 type TypeProps = {
   bars:
     | {
@@ -14,28 +16,38 @@ type TypeProps = {
         chart11: number;
       }
     | undefined;
+  totalCount: number | undefined;
 };
 
-const Chart = ({ bars }: TypeProps) => {
-  const barsArray = Object.values(bars!);
-  const maxValue = Math.max(...barsArray);
-  const minValue = Math.min(...barsArray);
+const Chart = ({ bars, totalCount }: TypeProps) => {
+  const [invertedValues, setInvertedValues] = useState<number[]>([]);
 
-  const normalizedArray = barsArray.map(
-    (x) => ((x - minValue) / (maxValue - minValue)) * 100
-  );
+  const barsArray1 = Object.values(bars!);
 
-  const maxValue2 = Math.max(...normalizedArray);
-  const minValue2 = Math.min(...normalizedArray);
-
-  const invertedValues = normalizedArray.map((value) =>
-    value === 0 ? 160 : maxValue2 - value + minValue2
-  );
-
-  const maxIndex = invertedValues.indexOf(Math.min(...invertedValues));
+  const maxValueArray = Math.max(...barsArray1);
+  const maxIndex = barsArray1.indexOf(maxValueArray);
 
   const topY = 87.5;
   const bottomY = topY + 200;
+
+  useEffect(() => {
+    const barsArray = Object.values(bars!);
+
+    const minValue3 = totalCount! < 700 ? -130 : -156;
+    const maxValue3 = -30;
+
+    const needValues = barsArray.map((item) => {
+      if (item == 0) {
+        return 160;
+      }
+      const percent = Math.round((item / totalCount!) * 100);
+      const value = minValue3 + (percent / 100) * (maxValue3 - minValue3);
+      const newValue = (value - value - value).toFixed(0);
+      return +newValue;
+    });
+
+    setInvertedValues(needValues);
+  }, [bars, totalCount]);
 
   return (
     <svg
@@ -258,8 +270,8 @@ const Chart = ({ bars }: TypeProps) => {
   );
 };
 
-const SecondChart = ({ bars }: TypeProps) => {
-  return <Chart bars={bars} />;
+const SecondChart = ({ bars, totalCount }: TypeProps) => {
+  return <Chart totalCount={totalCount} bars={bars} />;
 };
 
 export default SecondChart;
