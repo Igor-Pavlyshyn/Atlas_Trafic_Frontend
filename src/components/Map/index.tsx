@@ -20,10 +20,10 @@ const StyledMap = () => {
             position={{ lat: 50.400001, lng: 30.513333 }}
             onClick={() => setQueryHandler("1234")}
           />
-          <Marker
+          {/* <Marker
             position={{ lat: 50.490001, lng: 30.743333 }}
             onClick={() => setQueryHandler("1235")}
-          />
+          /> */}
         </Map>
       </APIProvider>
     </section>
