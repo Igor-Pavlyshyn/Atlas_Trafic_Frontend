@@ -67,3 +67,9 @@ export interface IRequestClassificationChart {
 }
 
 export interface IResponseClassificationChart extends IResponseCars {}
+
+export interface IUserResponse {
+  email: string;
+  id: number;
+  is_staff: boolean;
+}

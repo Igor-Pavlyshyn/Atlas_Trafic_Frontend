@@ -22,7 +22,8 @@ type TypeProps = {
 const Chart = ({ bars, totalCount }: TypeProps) => {
   const [invertedValues, setInvertedValues] = useState<number[]>([]);
 
-  const barsArray1 = Object.values(bars!);
+  const barsArrayWithLast = Object.values(bars!);
+  const barsArray1 = barsArrayWithLast.slice(0, -1);
 
   const maxValueArray = Math.max(...barsArray1);
   const maxIndex = barsArray1.indexOf(maxValueArray);

@@ -11,6 +11,7 @@ import {
   IResponseCars,
   IResponseClassificationChart,
   IResponseScores,
+  IUserResponse,
 } from "../../utils/apiTypes";
 
 interface IRefreshTokenResponse {
@@ -86,6 +87,9 @@ export const homeApi = createApi({
   reducerPath: "homeApi",
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
+    me: builder.query<IUserResponse, void>({
+      query: () => `/user/me/`,
+    }),
     scores: builder.query<IResponseScores, string>({
       query: (id) => `app/intersections/${id}/`,
     }),
@@ -110,4 +114,5 @@ export const {
   useCarsQuery,
   useClassificationsQuery,
   useClassificationChartQuery,
+  useMeQuery,
 } = homeApi;
