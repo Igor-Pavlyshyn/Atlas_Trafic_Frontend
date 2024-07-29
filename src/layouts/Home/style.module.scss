@@ -23,6 +23,12 @@
     display: flex;
     gap: 8px;
 
+    @media (max-width: 1240px) {
+      & section:nth-child(4) {
+        display: none;
+      }
+    }
+
     &_buttons {
       display: flex;
       gap: 4px;
@@ -37,52 +43,20 @@
   &_bottom {
     display: flex;
     gap: 8px;
-    // justify-content: space-between;
+
+    @media (max-width: 1240px) {
+      & section:nth-child(3) {
+        display: none;
+      }
+    }
+  }
+
+  &_ipad {
+    display: none;
+
+    @media (max-width: 1240px) {
+      display: flex;
+      gap: 20px;
+    }
   }
 }
-
-// .container {
-//   //   &_rows {
-//   display: flex;
-//   gap: 8px;
-//   //   }
-
-//   &_bottom_left {
-//     display: flex;
-//     justify-content: center;
-//     gap: 10%;
-//   }
-
-//   &_top {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 8px;
-
-//     &_rows {
-//       display: flex;
-//       gap: 8px;
-
-//       &_firstRow {
-//         display: flex;
-//         flex-direction: column;
-//         gap: 8px;
-
-//         &_buttons {
-//           display: flex;
-//           gap: 8px;
-//         }
-//       }
-
-//       &_secondRow {
-//         display: flex;
-//         flex-direction: column;
-//         gap: 8px;
-//       }
-//       &_fourthRow {
-//         display: flex;
-//         flex-direction: column;
-//         gap: 8px;
-//       }
-//     }
-//   }
-// }

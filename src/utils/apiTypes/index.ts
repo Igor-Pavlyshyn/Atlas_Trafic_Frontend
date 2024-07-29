@@ -73,3 +73,9 @@ export interface IUserResponse {
   id: number;
   is_staff: boolean;
 }
+
+export interface IResponseMarkers {
+  id: string;
+  lat: number;
+  lng: number;
+}

@@ -10,6 +10,7 @@ import {
   IRequestClassificationChart,
   IResponseCars,
   IResponseClassificationChart,
+  IResponseMarkers,
   IResponseScores,
   IUserResponse,
 } from "../../utils/apiTypes";
@@ -106,6 +107,9 @@ export const homeApi = createApi({
       query: ({ id, part, classification }) =>
         `app/intersections/${id}/classifications/${classification}/${part}/`,
     }),
+    markers: builder.query<IResponseMarkers[], void>({
+      query: () => `app/markers/`,
+    }),
   }),
 });
 
@@ -115,4 +119,5 @@ export const {
   useClassificationsQuery,
   useClassificationChartQuery,
   useMeQuery,
+  useMarkersQuery,
 } = homeApi;

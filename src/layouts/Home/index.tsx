@@ -56,47 +56,11 @@ const Home = () => {
           <TrafficViolation />
           <Health />
         </div>
-        {/* <div className={styles.container_top}>
-          <div className={styles.container_top_rows}>
-            <div className={styles.container_top_rows_firstRow}>
-              <Scores />
-              <div className={styles.container_top_rows_firstRow_buttons}>
-                <BlueButton width={164} svg={FileSvg}>
-                  Export reports
-                </BlueButton>
-                <BlueButton width={164} svg={TaskSvg}>
-                  Assign Task
-                </BlueButton>
-                <BlueButton width={136} svg={TaskSvg}>
-                  Agenda
-                </BlueButton>
-              </div>
-            </div>
-
-            <div className={styles.container_top_rows_secondRow}>
-              <Location />
-              <BlueButton width={250} svg={AlarmSvg}>
-                Assign Emergency Services
-              </BlueButton>
-            </div>
-
-            <div>
-              <CameraView />
-            </div>
-          </div>
-          <div>
-            <Map />
-          </div>
-          <div className={styles.container_bottom_left}>
-            <Tools />
-            <TrafficViolation />
-            <Health />
-          </div>
-        </div>
-
-        <div className={styles.container_top_rows_fourthRow}>
-          <Conversation />
-        </div> */}
+      </div>
+      {/* Ipad responsive */}
+      <div className={styles.container_ipad}>
+        <PriceStatistics />
+        <Health />
       </div>
       <div className={styles.other_content_block}>
         <Navigation />

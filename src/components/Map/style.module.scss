@@ -1,5 +1,8 @@
 .container {
   width: 845px;
+  @media (max-width: 1240px) {
+    width: 485px;
+  }
 }
 
 @keyframes bounce {

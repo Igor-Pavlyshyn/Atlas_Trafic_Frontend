@@ -1,8 +1,13 @@
 @use "../../constants/scss/colors.scss" as colors;
 
 .container {
-  width: 100%;
+  width: 350px;
   height: 100%;
+
+  @media (max-width: 1240px) {
+    width: 400px;
+    height: 300px;
+  }
 
   &_title {
     display: flex;
@@ -184,6 +189,9 @@
 
   position: absolute;
   bottom: -80px;
+  @media (max-width: 1240px) {
+    bottom: -40px;
+  }
 
   color: colors.$gray_1;
   font-size: 12px;

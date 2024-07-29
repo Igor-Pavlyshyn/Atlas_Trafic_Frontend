@@ -2,6 +2,7 @@ import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 
 import styles from "./style.module.scss";
 import { COLORS } from "../../constants/scss/COLORS";
+import { useMarkersQuery } from "../../redux/api/home";
 
 const setQueryHandler = (id: string) => {
   const searchParams = new URLSearchParams(window.location.search);
@@ -11,29 +12,32 @@ const setQueryHandler = (id: string) => {
 };
 
 const StyledMap = () => {
-  const center = { lat: 50.450001, lng: 30.523333 };
+  const { data, isLoading } = useMarkersQuery();
 
   return (
     <section className={styles.container}>
       <APIProvider apiKey="AIzaSyDCXtAQ82G7nb-j1Plkx1CE863ZFvkIfKM">
-        <Map
-          defaultCenter={center}
-          defaultZoom={10}
-          scaleControlOptions={null}
-          backgroundColor={COLORS.BLUE_GRADIENT}
-        >
-          <div className={styles.animated_marker}>
-            <Marker
-              position={{ lat: 50.400001, lng: 30.513333 }}
-              onClick={() => setQueryHandler("1234")}
-            />
-          </div>
-
-          <Marker
-            position={{ lat: 50.490001, lng: 30.743333 }}
-            onClick={() => setQueryHandler("1235")}
-          />
-        </Map>
+        {!isLoading && data ? (
+          <Map
+            defaultCenter={{ lat: +data[0].lat, lng: +data[0].lng }}
+            defaultZoom={10}
+            scaleControlOptions={null}
+            mapTypeControl={false}
+            streetViewControl={false}
+            fullscreenControl={false}
+            backgroundColor={COLORS.BLUE_GRADIENT}
+          >
+            {data?.map(({ id, lat, lng }) => (
+              <Marker
+                key={id}
+                position={{ lat: +lat, lng: +lng }}
+                onClick={() => setQueryHandler(`${id}`)}
+              />
+            ))}
+          </Map>
+        ) : (
+          <>Loading...</>
+        )}
       </APIProvider>
     </section>
   );
